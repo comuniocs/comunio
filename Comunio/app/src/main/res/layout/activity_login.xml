@@ -1,0 +1,66 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:gravity="center_horizontal"
+    android:orientation="vertical" android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin" tools:context=".LoginActivity"
+    android:weightSum="1"
+    android:background="@color/accent_material_dark">
+
+    <!-- Login progress -->
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="127dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="URJC"
+            android:id="@+id/textView"
+            android:layout_gravity="center"
+            android:textSize="32dp" />
+    </FrameLayout>
+
+    <FrameLayout
+        android:layout_width="348dp"
+        android:layout_height="102dp">
+
+        <EditText
+            android:layout_width="288dp"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"
+            android:ems="10"
+            android:id="@+id/editText2"
+            android:layout_gravity="center_horizontal|bottom"
+            android:text="Contraseña" />
+
+        <EditText
+            android:layout_width="283dp"
+            android:layout_height="wrap_content"
+            android:inputType="textEmailAddress"
+            android:ems="10"
+            android:id="@+id/editText3"
+            android:layout_gravity="center_horizontal|top"
+            android:text="Usuario" />
+
+    </FrameLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_weight="0.51">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Login"
+            android:id="@+id/button"
+            android:layout_gravity="center"
+            android:clickable="false" />
+    </FrameLayout>
+
+</LinearLayout>
