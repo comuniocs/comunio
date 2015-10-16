@@ -6,7 +6,7 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin" tools:context=".LoginActivity"
     android:weightSum="1"
-    android:background="@color/accent_material_dark">
+    android:background="#088A08">
 
     <!-- Login progress -->
 
@@ -18,35 +18,50 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="URJC"
+            android:text="Comunio"
             android:id="@+id/textView"
             android:layout_gravity="center"
-            android:textSize="32dp" />
+            android:textSize="32sp" />
     </FrameLayout>
 
-    <FrameLayout
-        android:layout_width="348dp"
-        android:layout_height="102dp">
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="191dp"
+        android:weightSum="1">
 
-        <EditText
-            android:layout_width="288dp"
+        <TextView
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:inputType="textPassword"
-            android:ems="10"
-            android:id="@+id/editText2"
-            android:layout_gravity="center_horizontal|bottom"
-            android:text="Contraseña" />
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Usuario:"
+            android:id="@+id/textView2"
+            android:layout_weight="0.10" />
 
         <EditText
-            android:layout_width="283dp"
+            android:layout_width="346dp"
             android:layout_height="wrap_content"
             android:inputType="textEmailAddress"
             android:ems="10"
-            android:id="@+id/editText3"
-            android:layout_gravity="center_horizontal|top"
-            android:text="Usuario" />
+            android:id="@+id/tUsuario" />
 
-    </FrameLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Contraseña"
+            android:id="@+id/textView3"
+            android:layout_weight="0.10" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"
+            android:ems="10"
+            android:id="@+id/tPass"
+            android:layout_weight="0.10"
+            android:autoText="false" />
+    </LinearLayout>
 
     <FrameLayout
         android:layout_width="match_parent"
@@ -58,9 +73,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Login"
-            android:id="@+id/button"
+            android:id="@+id/bLogin"
             android:layout_gravity="center"
-            android:clickable="false" />
+            android:clickable="true" />
+
     </FrameLayout>
 
 </LinearLayout>

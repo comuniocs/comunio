@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">My Application</string>
     
-    <!-- Strings related to login -->
+    <!-- Strings related to lay_login -->
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password (optional)</string>
     <string name="action_sign_in">Sign in or register</string>
@@ -13,4 +13,20 @@
     <string name="permission_rationale">"Contacts permissions are needed for providing email
         completions."
     </string>
+
+    <string-array name="equipos">
+        <item>Real Madrid</item>
+        <item>Barcelona</item>
+        <item>Villareal</item>
+        <item>Betis</item>
+        <item>Sevilla</item>
+    </string-array>
+    <string-array name="jugadores">
+        <item>Jugador A</item>
+        <item>Jugador B</item>
+        <item>Jugador C</item>
+        <item>Jugador D</item>
+        <item>Jugador E</item>
+    </string-array>
+
 </resources>
