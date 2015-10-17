@@ -13,7 +13,7 @@ public class Inicio extends Activity {
     @Override
     protected void onCreate (Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.lay_menu);
+        setContentView(R.layout.lay_inicio_copy);
         ActivarBot();
 
 

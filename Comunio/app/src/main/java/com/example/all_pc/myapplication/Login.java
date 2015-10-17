@@ -38,7 +38,7 @@ public class Login extends Activity {
             but.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    startActivity(new Intent(Login.this, Inicio.class));
+                    startActivity(new Intent(Login.this, Act_Principal.class));
                 }
             });
         //}

@@ -13,14 +13,42 @@
     <string name="permission_rationale">"Contacts permissions are needed for providing email
         completions."
     </string>
+    <string name="action_settings">Configuración</string>
 
-    <string-array name="equipos">
-        <item>Real Madrid</item>
-        <item>Barcelona</item>
-        <item>Villareal</item>
-        <item>Betis</item>
-        <item>Sevilla</item>
+    <!-- Nombre de las secciones del menu lateral-->
+    <string-array name="nav_drawer_items">
+        <item>Inicio</item>
+        <item>Clasificacion</item>
+        <item>Equipos</item>
+        <item>Jugadores</item>
+        <item>Merc. Fichajes</item>
+
+
     </string-array>
+
+    <!-- Img de las secciones del menu lateral-->
+    <array name="nav_drawer_icons">
+        <item>@drawable/ic_home</item>
+        <item>@drawable/ic_home</item>
+        <item>@drawable/ic_home</item>
+        <item>@drawable/ic_home</item>
+        <item>@drawable/ic_home</item>
+        <!--<item>@drawable/"nombre"</item>-->
+    </array>
+
+    <!-- Content Description -->
+    <string name="desc_list_item_icon">Item Icon</string>
+
+    <!-- Nombre de los Equipos-->
+    <string-array name="equipos">
+        <item>Equipo A</item>
+        <item>Equipo B</item>
+        <item>Equipo C</item>
+        <item>Equipo D</item>
+        <item>Equipo E</item>
+    </string-array>
+
+    <!-- Nombre de las Jugadores-->
     <string-array name="jugadores">
         <item>Jugador A</item>
         <item>Jugador B</item>
