@@ -29,10 +29,10 @@
     <!-- Img de las secciones del menu lateral-->
     <array name="nav_drawer_icons">
         <item>@drawable/ic_home</item>
-        <item>@drawable/ic_home</item>
-        <item>@drawable/ic_home</item>
-        <item>@drawable/ic_home</item>
-        <item>@drawable/ic_home</item>
+        <item>@drawable/ic_clasif</item>
+        <item>@drawable/ic_equipo</item>
+        <item>@drawable/ic_jugador</item>
+        <item>@drawable/ic_fichaj</item>
         <!--<item>@drawable/"nombre"</item>-->
     </array>
 
