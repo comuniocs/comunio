@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 /**
  * Created by All-PC on 16/10/2015.
@@ -15,30 +16,33 @@ import android.widget.EditText;
 
 public class Login extends Activity {
 
-    protected EditText usuario;
-    protected EditText pass;
+    protected String usuario;
+    protected String pass;
 
 
     @Override
     protected void onCreate (Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.lay_login);
-
-        usuario = (EditText) findViewById(R.id.tUsuario);
-        pass = (EditText) findViewById(R.id.tPass);
-
-        entrarBot ();
+        BotonLogin();
 
 
     }
 
-    private void entrarBot() {
-        //if ((usuario.getText().equals("admin"))&& (pass.getText().equals("admin"))) {
+    private void BotonLogin() {
+        //Carga el boton
             Button but = (Button) findViewById(R.id.bLogin);
             but.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    startActivity(new Intent(Login.this, Act_Principal.class));
+                    usuario = ((EditText) findViewById(R.id.tUsuario)).getText().toString();
+                    pass = ((EditText) findViewById(R.id.tPass)).getText().toString();
+                    // Si cumple el if pasara a la siguiente pantalla si no, saldra una notificacion advirtiendo que hay algun dato incorrecto
+                    if (usuario.equals("admin") && pass.equals("admin")) {
+                        startActivity(new Intent(Login.this, Act_Principal.class));
+                    } else {
+                        Toast.makeText(getApplicationContext(), "Usuario/Contraseña incorrectos", Toast.LENGTH_SHORT).show();
+                    }
                 }
             });
         //}
