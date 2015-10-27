@@ -27,7 +27,7 @@
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="191dp"
+        android:layout_height="169dp"
         android:weightSum="1">
 
         <TextView
@@ -63,20 +63,34 @@
             android:autoText="false" />
     </LinearLayout>
 
-    <FrameLayout
+    <Button
         android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:text="Login"
+        android:id="@+id/bLogin"
+        android:layout_weight="0.3"
+        android:textSize="18dp" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="29dp"
+        android:layout_gravity="center_horizontal"></RelativeLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="378dp"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_weight="0.51">
+        android:layout_weight="0.62"
+        android:weightSum="1" >
 
         <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Login"
-            android:id="@+id/bLogin"
-            android:layout_gravity="center"
-            android:clickable="true" />
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:text="Registrarse"
+            android:id="@+id/bRegistrar"
+            android:layout_weight="0.3"
+            android:textSize="18dp" />
 
-    </FrameLayout>
+    </LinearLayout>
 
 </LinearLayout>

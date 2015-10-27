@@ -25,6 +25,7 @@ public class Login extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.lay_login);
         BotonLogin();
+        BotonRegistr();
 
 
     }
@@ -45,6 +46,16 @@ public class Login extends Activity {
                     }
                 }
             });
-        //}
+    }
+
+    private void BotonRegistr() {
+        //Carga el boton
+        Button but = (Button) findViewById(R.id.bRegistrar);
+        but.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                    startActivity(new Intent(Login.this, RegistrUser.class));
+            }
+        });
     }
 }
