@@ -18,6 +18,16 @@ public class JEquipo {
         this.generar_jug_basicos();
     }
 
+    protected void generar_puntos_clasi(){
+        int suma=0;
+        for (JJugador jug:Plantilla){
+            if (jug.isEstado()){
+                suma=suma+jug.generar_puntos();
+            }
+        }
+        this.Punto_clasi= this.Punto_clasi+suma;
+    }
+
     private void generar_jug_basicos(){
         this.Plantilla.add(new JJugador("Jugador A","Basico",this,"POR",0,4,true));
         this.Plantilla.add(new JJugador("Jugador B","Basico",this,"DF",0,4,true));
