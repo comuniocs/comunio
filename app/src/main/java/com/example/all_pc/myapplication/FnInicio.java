@@ -1,21 +1,15 @@
 package com.example.all_pc.myapplication;
 
-import android.app.Fragment;
 import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
+import android.support.v4.app.FragmentActivity;
 
 /**
  * Created by All-PC on 16/10/2015.
  */
-public class FnInicio extends Fragment {
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+public class FnInicio extends FragmentActivity {
 
-        View rootView = inflater.inflate(R.layout.lay_inicio, container, false);
-
-        return rootView;
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.lay_inicio);
     }
 }

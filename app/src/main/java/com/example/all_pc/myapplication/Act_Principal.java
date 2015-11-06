@@ -1,11 +1,10 @@
 package com.example.all_pc.myapplication;
 
-import android.app.Fragment;
-import android.app.FragmentManager;
 import android.content.res.Configuration;
 import android.content.res.TypedArray;
 import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
+import android.support.v4.app.FragmentActivity;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -160,7 +159,7 @@ public class Act_Principal extends AppCompatActivity {
      * */
     private void displayView(int position) {
         // update the main content by replacing fragments
-        Fragment fragment = null;
+        FragmentActivity fragment = null;
         switch (position) {
             case 0:
                 fragment = new FnInicio();
@@ -183,9 +182,8 @@ public class Act_Principal extends AppCompatActivity {
         }
 
         if (fragment != null) {
-            FragmentManager fragmentManager = getFragmentManager();
-            fragmentManager.beginTransaction()
-                    .replace(R.id.frame_container, fragment).commit();
+            android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
+            //fragmentManager.beginTransaction().replace(R.id.frame_container, fragment).commit();
 
             // update selected item and title, then close the drawer
             mDrawerList.setItemChecked(position, true);
