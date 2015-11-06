@@ -1,46 +1,72 @@
 package com.example.all_pc.myapplication;
 
-import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
-/**
- * Created by All-PC on 16/10/2015.
- */
+public class Login extends AppCompatActivity implements View.OnClickListener{
 
-
-
-public class Login extends Activity {
-
-    protected EditText usuario;
-    protected EditText pass;
-
+    Button bLogin;
+    EditText etusername, etpassword;
+    TextView registerLink;
 
     @Override
-    protected void onCreate (Bundle savedInstanceState){
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.lay_login);
 
-        usuario = (EditText) findViewById(R.id.tUsuario);
-        pass = (EditText) findViewById(R.id.tPass);
+        etusername = (EditText)findViewById(R.id.etusername);
+        etpassword = (EditText)findViewById(R.id.etpassword);
+        bLogin = (Button) findViewById(R.id.bLogin);
+        registerLink = (TextView) findViewById(R.id.bRegisterLink);
+        bLogin.setOnClickListener(this);
+        registerLink.setOnClickListener(this);
+    }
 
-        entrarBot ();
+
+    @Override
+    public void onClick(View v) {
+    switch (v.getId()){
+        case R.id.bLogin:
+            String username = etusername.getText().toString();
+            String password = etpassword.getText().toString();
+            String query = "SELECT * FROM users where username = '"+username+"' And password = '"+password+"'";
+            DataBaseManager db = new DataBaseManager(this);
+            if (db.Estaregistrado(query)){
+                startActivity(new Intent(this, Act_Principal.class));;
+            }else{
+                showAlert("El usuario o contraseña no son correctos");
+            }
+            break;
+
+        case R.id.bRegisterLink:
+            startActivity(new Intent(this, register.class));
+            break;
 
 
     }
 
-    private void entrarBot() {
-        //if ((usuario.getText().equals("admin"))&& (pass.getText().equals("admin"))) {
-            Button but = (Button) findViewById(R.id.bLogin);
-            but.setOnClickListener(new View.OnClickListener() {
+
+    }
+
+    public void showAlert(String message){
+
+        AlertDialog.Builder myAlert = new AlertDialog.Builder(this);
+        myAlert.setMessage(message)
+            .setPositiveButton("Continue..", new DialogInterface.OnClickListener() {
                 @Override
-                public void onClick(View v) {
-                    startActivity(new Intent(Login.this, Act_Principal.class));
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.dismiss();
                 }
-            });
-        //}
+            })
+            .setTitle("Message")
+            .create();
+        myAlert.show();
     }
 }
