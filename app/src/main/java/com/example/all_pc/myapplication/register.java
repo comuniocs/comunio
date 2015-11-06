@@ -2,6 +2,7 @@ package com.example.all_pc.myapplication;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -34,6 +35,7 @@ public class register extends AppCompatActivity implements  View.OnClickListener
                         showAlert("El usuario ya existe");}
                      else{
                          showAlert("Usuario creado correctamente");
+                         startActivity(new Intent(this, Login.class));
                      }
 
                 break;

@@ -39,7 +39,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener{
             String query = "SELECT * FROM users where username = '"+username+"' And password = '"+password+"'";
             DataBaseManager db = new DataBaseManager(this);
             if (db.Estaregistrado(query)){
-                startActivity(new Intent(this, Act_Principal.class));;
+                startActivity(new Intent(this, Act_Principal.class));
             }else{
                 showAlert("El usuario o contraseña no son correctos");
             }
