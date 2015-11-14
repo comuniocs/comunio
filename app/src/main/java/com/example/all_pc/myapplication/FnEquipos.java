@@ -2,6 +2,7 @@ package com.example.all_pc.myapplication;
 
 import android.app.Fragment;
 import android.os.Bundle;
+import android.support.v13.app.FragmentTabHost;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -17,12 +18,39 @@ public class FnEquipos extends Fragment implements View.OnClickListener {
     ListView list;
     ArrayAdapter<String> adapter;
     ArrayList<String> lista;
+
+    private FragmentTabHost mtabHost;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
         View rootView = inflater.inflate(R.layout.lay_equipos, container, false);
-        lista = new ArrayList<String>();
+        mtabHost=(FragmentTabHost)getView().findViewById(android.R.id.tabhost);
+        mtabHost.setup(getActivity(),getFragmentManager(),android.R.id.tabcontent);
+
+        mtabHost.addTab(mtabHost.newTabSpec("tab1").setIndicator("Equipo"),FnJugadores.class,null);
+        mtabHost.addTab(mtabHost.newTabSpec("tab1").setIndicator("Equipo",null));
+        mtabHost.addTab(mtabHost.newTabSpec("tab1").setIndicator("Equipo",null));
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            /*lista = new ArrayList<String>();
         //titulo.setText("Mis Jugadores");
 
 
@@ -35,7 +63,7 @@ public class FnEquipos extends Fragment implements View.OnClickListener {
         lista.add("Keylor Navas");
         adapter = new ArrayAdapter<String>(this.getActivity() ,android.R.layout.simple_list_item_1, android.R.id.text1, lista);
         list.setAdapter(adapter);
-        //list.addHeaderView(titulo);
+        //list.addHeaderView(titulo);*/
 
         return rootView;
     }

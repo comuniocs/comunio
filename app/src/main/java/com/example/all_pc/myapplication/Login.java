@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class Login extends AppCompatActivity implements View.OnClickListener{
 
@@ -39,6 +40,8 @@ public class Login extends AppCompatActivity implements View.OnClickListener{
             String query = "SELECT * FROM users where username = '"+username+"' And password = '"+password+"'";
             DataBaseManager db = new DataBaseManager(this);
             if (db.Estaregistrado(query)){
+                Toast.makeText(this, "Cargando...", Toast.LENGTH_LONG).show();
+
                 startActivity(new Intent(this, Act_Principal.class));
             }else{
                 showAlert("El usuario o contraseña no son correctos");
@@ -59,13 +62,13 @@ public class Login extends AppCompatActivity implements View.OnClickListener{
 
         AlertDialog.Builder myAlert = new AlertDialog.Builder(this);
         myAlert.setMessage(message)
-            .setPositiveButton("Continue..", new DialogInterface.OnClickListener() {
+            .setPositiveButton("Continuar", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
                     dialog.dismiss();
                 }
             })
-            .setTitle("Message")
+            .setTitle("")
             .create();
         myAlert.show();
     }
