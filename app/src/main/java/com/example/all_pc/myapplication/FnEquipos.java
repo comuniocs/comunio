@@ -1,6 +1,7 @@
 package com.example.all_pc.myapplication;
 
 import android.app.Fragment;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.v13.app.FragmentTabHost;
 import android.view.LayoutInflater;
@@ -10,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TabHost;
 
 import java.util.ArrayList;
 
@@ -26,24 +28,41 @@ public class FnEquipos extends Fragment implements View.OnClickListener {
                              Bundle savedInstanceState) {
 
         View rootView = inflater.inflate(R.layout.lay_equipos, container, false);
-        mtabHost=(FragmentTabHost)getView().findViewById(android.R.id.tabhost);
+
+        Resources res= getResources();
+        TabHost tabs=(TabHost) rootView.findViewById(R.id.tabHost);
+        tabs.setup();
+        TabHost.TabSpec spec = tabs.newTabSpec("Pestaña 1");
+        spec.setContent(R.id.tab1);
+        spec.setIndicator("Equipo", res.getDrawable(android.R.drawable.bottom_bar));
+        tabs.addTab(spec);
+
+        tabs.setup();
+        TabHost.TabSpec spec2 = tabs.newTabSpec("Pestaña 1");
+        spec2.setContent(R.id.tab2);
+        spec2.setIndicator("Plantilla", res.getDrawable(android.R.drawable.bottom_bar));
+        tabs.addTab(spec2);
+
+        tabs.setup();
+        TabHost.TabSpec spec3 = tabs.newTabSpec("Pestaña 1");
+        spec3.setContent(R.id.tab3);
+        spec3.setIndicator("En venta", res.getDrawable(android.R.drawable.bottom_bar));
+        tabs.addTab(spec3);
+
+
+
+
+
+
+
+
+
+
+
+        /*mtabHost=(FragmentTabHost)getView().findViewById(android.R.id.tabhost);
         mtabHost.setup(getActivity(),getFragmentManager(),android.R.id.tabcontent);
 
-        mtabHost.addTab(mtabHost.newTabSpec("tab1").setIndicator("Equipo"),FnJugadores.class,null);
-        mtabHost.addTab(mtabHost.newTabSpec("tab1").setIndicator("Equipo",null));
-        mtabHost.addTab(mtabHost.newTabSpec("tab1").setIndicator("Equipo",null));
-
-
-
-
-
-
-
-
-
-
-
-
+        //mtabHost.addTab(mtabHost.newTabSpec("tab1").setIndicator("Equipo"),FnJugadores.class,null);*/
 
 
 
