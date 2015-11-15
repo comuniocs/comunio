@@ -169,7 +169,7 @@ public class Act_Principal extends AppCompatActivity {
                 fragment = new FnClasificacion();
                 break;
             case 2:
-                fragment = new FnEquipos();
+                fragment = new FnTabEquipos();
                 break;
             case 3:
                 fragment = new FnJugadores();

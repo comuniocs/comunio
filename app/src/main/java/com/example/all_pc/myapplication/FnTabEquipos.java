@@ -15,19 +15,17 @@ import android.widget.TabHost;
 
 import java.util.ArrayList;
 
-public class FnEquipos extends Fragment implements View.OnClickListener {
+public class FnTabEquipos extends Fragment implements View.OnClickListener {
     //TextView titulo;
     ListView list;
     ArrayAdapter<String> adapter;
     ArrayList<String> lista;
 
-    private FragmentTabHost mtabHost;
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        View rootView = inflater.inflate(R.layout.lay_equipos, container, false);
+        View rootView = inflater.inflate(R.layout.lay_tabequipos, container, false);
 
         Resources res= getResources();
         TabHost tabs=(TabHost) rootView.findViewById(R.id.tabHost);
