@@ -186,7 +186,7 @@ public class Act_Principal extends AppCompatActivity {
                 fragment = new FnJugadores();
                 break;
             case 4:
-                fragment = new FnTab3Venta();
+                fragment = new FnTabs_Merc_Fichajes();
                 break;
 
             default:

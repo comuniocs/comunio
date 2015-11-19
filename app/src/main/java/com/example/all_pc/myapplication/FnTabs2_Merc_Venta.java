@@ -12,7 +12,7 @@ import android.widget.ListView;
 /**
  * Created by xEV on 15/11/2015.
  */
-public class FnTab3Venta extends Fragment implements View.OnClickListener {
+public class FnTabs2_Merc_Venta extends Fragment implements View.OnClickListener {
     ListView list;
     ArrayAdapter<String> adapter;
 
@@ -20,27 +20,18 @@ public class FnTab3Venta extends Fragment implements View.OnClickListener {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        View rootView = inflater.inflate(R.layout.lay_tab3venta, container, false);
-        rootView.postInvalidate();
+        View rootView = inflater.inflate(R.layout.lay_tabs2_merc_venta, container, false);
 
         //titulo.setText("Mis Jugadores");
 
-        list = (ListView) rootView.findViewById(R.id.listVenta);
+        list = (ListView) rootView.findViewById(R.id.listjug_propiosventa);
         adapter = new ArrayAdapter<String>(this.getActivity() ,android.R.layout.simple_list_item_1, android.R.id.text1, Act_Principal.getJug_venta());
         list.setAdapter(adapter);
         //list.addHeaderView(titulo);
-        rootView.postInvalidate();
-        list.postInvalidate();
 
         return rootView;
     }
 
-
-    public void onResume(){
-        adapter = new ArrayAdapter<String>(this.getActivity() ,android.R.layout.simple_list_item_1, android.R.id.text1, Act_Principal.getJug_venta());
-        list.setAdapter(adapter);
-        super.onResume();
-    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
