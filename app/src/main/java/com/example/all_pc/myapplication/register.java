@@ -32,8 +32,7 @@ public class register extends AppCompatActivity implements  View.OnClickListener
                 DataBaseManager manager = new DataBaseManager(this);
                 long result = manager.insertar(etname.getText().toString(), etusername.getText().toString(), etpassword.getText().toString());
                      if (result == -1) {
-                        showAlert("El usuario ya existe");
-                     }
+                        showAlert("El usuario ya existe");}
                      else{
                          showAlert("Usuario creado correctamente");
                          startActivity(new Intent(this, Login.class));

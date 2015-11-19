@@ -39,6 +39,16 @@ public class Act_Principal extends AppCompatActivity {
     private ArrayList<NavDrawerItem> navDrawerItems;
     private NavDrawerListAdapter adapter;
 
+    static ArrayList<String> jug_venta =new ArrayList<String>();
+
+    public static ArrayList<String> getJug_venta() {
+        return jug_venta;
+    }
+
+    public static void addJug_venta(String jug) {
+        jug_venta.add(jug);
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -80,6 +90,7 @@ public class Act_Principal extends AppCompatActivity {
         adapter = new NavDrawerListAdapter(getApplicationContext(),
                 navDrawerItems);
         mDrawerList.setAdapter(adapter);
+
 
         // enabling action bar app icon and behaving it as toggle button
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -169,13 +180,13 @@ public class Act_Principal extends AppCompatActivity {
                 fragment = new FnClasificacion();
                 break;
             case 2:
-                fragment = new FnTabMenEquipos();
+                fragment = new FnTabEquipos();
                 break;
             case 3:
                 fragment = new FnJugadores();
                 break;
             case 4:
-                fragment = new FnMerc_Fichajes();
+                fragment = new FnTab3Venta();
                 break;
 
             default:
