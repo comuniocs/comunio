@@ -12,7 +12,7 @@ import android.widget.ListView;
 /**
  * Created by xEV on 15/11/2015.
  */
-public class FnTabs2_Merc_Venta extends Fragment implements View.OnClickListener {
+public class FnMerc_Fichajes extends Fragment implements View.OnClickListener {
     ListView list;
     ArrayAdapter<String> adapter;
 
@@ -20,7 +20,7 @@ public class FnTabs2_Merc_Venta extends Fragment implements View.OnClickListener
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        View rootView = inflater.inflate(R.layout.lay_tabs2_merc_venta, container, false);
+        View rootView = inflater.inflate(R.layout.lay_merc_fichajes, container, false);
 
         //titulo.setText("Mis Jugadores");
 
