@@ -9,19 +9,17 @@
     tools:context="com.example.all_pc.myapplication"
     android:background="#2d7f2d">
 
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="155dp">
+    <TextView
+        android:layout_width="wrap_content"
+        android:text="Name"
+        android:layout_height="wrap_content" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Comunio"
-            android:id="@+id/textView"
-            android:layout_gravity="center"
-            android:textSize="35dp" />
-    </FrameLayout>
+    <EditText
+        android:id="@+id/etname"
+        android:layout_width="match_parent"
+        android:layout_marginBottom="10dp"
+        android:layout_height="wrap_content" />
+
 
     <TextView
         android:layout_width="wrap_content"
@@ -46,17 +44,12 @@
         android:inputType="textPassword"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
+
+
     <Button
-        android:id="@+id/bLogin"
-        android:text="Login"
+        android:id="@+id/bRegister"
+        android:text="Registrar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-    <TextView
-        android:id="@+id/bRegisterLink"
-        android:layout_width="wrap_content"
-        android:text="Register Here"
-        android:textStyle="bold"
-        android:layout_gravity="center_horizontal"
         android:layout_height="wrap_content" />
 
 
