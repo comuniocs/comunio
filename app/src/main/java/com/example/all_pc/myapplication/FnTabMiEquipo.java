@@ -12,7 +12,7 @@ import android.widget.TabHost;
 
 import java.util.ArrayList;
 
-public class FnTabEquipos extends Fragment{
+public class FnTabMiEquipo extends Fragment{
     //TextView titulo;
     ListView list;
     ArrayAdapter<String> adapter;
@@ -22,7 +22,7 @@ public class FnTabEquipos extends Fragment{
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        View rootView = inflater.inflate(R.layout.lay_tabequipos, container, false);
+        View rootView = inflater.inflate(R.layout.lay_tabmiequipo, container, false);
 
         Resources res= getResources();
         TabHost tabs = (TabHost) rootView.findViewById(R.id.tabHost);

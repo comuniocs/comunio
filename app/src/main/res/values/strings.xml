@@ -17,9 +17,9 @@
 
     <!-- Nombre de las secciones del menu lateral-->
     <string-array name="nav_drawer_items">
-        <item>Inicio</item>
+        <item>Mi Equipo</item>
         <item>Clasificacion</item>
-        <item>Equipos</item>
+        <item>List de Equipos</item>
         <item>Jugadores</item>
         <item>Merc. Fichajes</item>
 
