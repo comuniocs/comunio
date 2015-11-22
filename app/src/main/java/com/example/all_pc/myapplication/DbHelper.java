@@ -4,6 +4,8 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import java.util.List;
+
 /**
  * Created by Randal on 1/11/15.
  */
@@ -19,8 +21,6 @@ public class DbHelper extends SQLiteOpenHelper{
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(DataBaseManager.CREATE_TABLE_USERS);
         db.execSQL(DataBaseManager.CREATE_TABLE_PLAYERS);
-
-
     }
 
     @Override

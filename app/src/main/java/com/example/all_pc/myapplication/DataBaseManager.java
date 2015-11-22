@@ -5,6 +5,8 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
+import java.util.List;
+
 /**
  * Created by Randal on 1/11/15.
  */
@@ -34,6 +36,7 @@ public class DataBaseManager {
         helper = new DbHelper(context);
         db  = helper.getWritableDatabase();
     }
+
     public ContentValues generarContentValues (String nombre, String username, String contraseña){
         ContentValues valores = new ContentValues();
         valores.put(CN_NAME, nombre);
@@ -41,19 +44,31 @@ public class DataBaseManager {
         valores.put(CN_PASSWORD, contraseña);
         return valores;
     }
+
+    public ContentValues generarContentJugador (String nombre, String club){
+        ContentValues valores = new ContentValues();
+        valores.put(CN_NAME, nombre);
+        valores.put(CN_TEAM, club);
+        return valores;
+    }
     // podemos crear una clase usuario el cual tendra todos los datos incluido el id pero este se generara solo y no habra que ponerlo, por tanto se creara el objeto y se insertara ocmo tal.
     public long insertar (String nombre, String username, String contraseña){
        return db.insert(TABLE_NAME, null, generarContentValues(nombre, username, contraseña));//devuelve long, si es -1 es que hubo problemas.
     }
 
-    /*public void generarjugadores(){
-        db.execSQL("INSERT INTO "+TABLE_NAME_PLAYERS+" VALUES ('L. Messi','FCB');");
-        db.execSQL("INSERT INTO "+TABLE_NAME_PLAYERS+" VALUES ('Ronaldo','RMA');");
-        db.execSQL("INSERT INTO "+TABLE_NAME_PLAYERS+" VALUES ('Marcelo','RMA');");
-        db.execSQL("INSERT INTO "+TABLE_NAME_PLAYERS+" VALUES ('Benzema','RMA');");
-        db.execSQL("INSERT INTO "+TABLE_NAME_PLAYERS+" VALUES ('Neymar','FCB');");
+    public void generarJugadores(){
+        RestClient cliente = new RestClient();
+        List<Player> jugadores = cliente.cargarJugadores();
 
-    }*/
+        for(int i=0; i < jugadores.size(); i++){
+            insertarJugador(jugadores.get(i));
+        }
+    }
+
+    public long insertarJugador(Player jugador){
+        SQLiteDatabase db = this.getWritableDatabase();
+        return db.insert(TABLE_NAME_PLAYERS, null, generarContentJugador(jugador.getNick(), jugador.getTeam_name()));
+    }
 
     public void insertar2 (String nombre, String username, String contraseña){
         db.execSQL("INSERT INTO " + TABLE_NAME + " values(null,'" + nombre + "','" + username + "','" + contraseña + "')");
