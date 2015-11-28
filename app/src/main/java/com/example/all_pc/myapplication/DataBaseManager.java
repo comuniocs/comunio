@@ -21,6 +21,7 @@ public class DataBaseManager {
     private  DbHelper helper;
     private  SQLiteDatabase db;
 
+
     public  static final String CREATE_TABLE_USERS = "create table " +TABLE_NAME+ " ("
             + CN_ID + " integer primary key autoincrement,"
             + CN_NAME + " text not null,"

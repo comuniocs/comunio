@@ -23,6 +23,19 @@ public class FnTab1once extends Fragment {
         LinearLayout linearl = (LinearLayout) rootView.findViewById(R.id.linearl1);
         registerForContextMenu(linearl);
 
+        registerForContextMenu(rootView.findViewById(R.id.tPortero));
+        registerForContextMenu(rootView.findViewById(R.id.tDfc1));
+        registerForContextMenu(rootView.findViewById(R.id.tDfc2));
+        registerForContextMenu(rootView.findViewById(R.id.tDfc3));
+        registerForContextMenu(rootView.findViewById(R.id.tDfc4));
+        registerForContextMenu(rootView.findViewById(R.id.tMed1));
+        registerForContextMenu(rootView.findViewById(R.id.tMed2));
+        registerForContextMenu(rootView.findViewById(R.id.tMed3));
+        registerForContextMenu(rootView.findViewById(R.id.tMed4));
+        registerForContextMenu(rootView.findViewById(R.id.tDel1));
+        registerForContextMenu(rootView.findViewById(R.id.tDel2));
+
+
         return rootView;
     }
 
