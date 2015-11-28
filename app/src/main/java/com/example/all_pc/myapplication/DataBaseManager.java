@@ -14,11 +14,12 @@ public class DataBaseManager {
     public static final String CN_ID = "_id";
     public static final String CN_NAME = "nombre";
     public static final String CN_TEAM = "equipo";
+    public static final String CN_PLAYER_IMAGE = "imagen_jugador";
+    public static final String CN_TEAM_IMAGE = "imagen_equipo";
     public static final String CN_USERNAME = "username";
     public static final String CN_PASSWORD = "password";
     private  DbHelper helper;
     private  SQLiteDatabase db;
-
 
     public  static final String CREATE_TABLE_USERS = "create table " +TABLE_NAME+ " ("
             + CN_ID + " integer primary key autoincrement,"
@@ -28,7 +29,31 @@ public class DataBaseManager {
     public  static final String CREATE_TABLE_PLAYERS = "create table " +TABLE_NAME_PLAYERS+ " ("
             + CN_ID + " integer primary key autoincrement,"
             + CN_NAME + " text not null,"
-            + CN_TEAM + " text not null);";
+            + CN_TEAM + " text not null,"
+            + CN_PLAYER_IMAGE + "text not null"
+            + CN_TEAM_IMAGE + "text not null);";
+
+    public static final String INSERT_PLAYERS = "Insert into "+TABLE_NAME_PLAYERS+" ("+CN_ID+","+CN_NAME+","+CN_PLAYER_IMAGE+","+CN_TEAM_IMAGE+","+CN_TEAM+") values('23569','L. Messi'              ,'http://thumb.resfu.com/img_data/escudos/medium/429.jpg?size=40x&ext=png&lossy=1&1' ,'http://thumb.resfu.com/img_data/players/medium/23569.jpg?size=34x&ext=png&lossy=1&1' ,'FCB');"+
+            "Insert into "+TABLE_NAME_PLAYERS+" ("+CN_ID+","+CN_NAME+","+CN_PLAYER_IMAGE+","+CN_TEAM_IMAGE+","+CN_TEAM+") values('28185', 'C. Ronaldo'           ,'http://thumb.resfu.com/img_data/escudos/medium/2107.jpg?size=40x&ext=png&lossy=1&1','http://thumb.resfu.com/img_data/players/medium/28185.jpg?size=34x&ext=png&lossy=1&1' ,'RMA');"+
+            "Insert into "+TABLE_NAME_PLAYERS+" ("+CN_ID+","+CN_NAME+","+CN_PLAYER_IMAGE+","+CN_TEAM_IMAGE+","+CN_TEAM+") values('23559', 'D. Alves'             ,'http://thumb.resfu.com/img_data/escudos/medium/429.jpg?size=40x&ext=png&lossy=1&1' ,'http://thumb.resfu.com/img_data/players/medium/23559.jpg?size=34x&ext=png&lossy=1&1' ,'FCB');"+
+            "Insert into "+TABLE_NAME_PLAYERS+" ("+CN_ID+","+CN_NAME+","+CN_PLAYER_IMAGE+","+CN_TEAM_IMAGE+","+CN_TEAM+") values('23343', 'Marcelo'              ,'http://thumb.resfu.com/img_data/escudos/medium/2107.jpg?size=40x&ext=png&lossy=1&1','http://thumb.resfu.com/img_data/players/medium/23343.jpg?size=34x&ext=png&lossy=1&1' ,'RMA');"+
+            "Insert into "+TABLE_NAME_PLAYERS+" ("+CN_ID+","+CN_NAME+","+CN_PLAYER_IMAGE+","+CN_TEAM_IMAGE+","+CN_TEAM+") values('2133' , 'M. \u00d6zil'         ,'http://thumb.resfu.com/img_data/escudos/medium/263.jpg?size=40x&ext=png&lossy=1&1' ,'http://thumb.resfu.com/img_data/players/medium/2133.jpg?size=34x&ext=png&lossy=1&1'  ,'ARS');"+
+            "Insert into "+TABLE_NAME_PLAYERS+" ("+CN_ID+","+CN_NAME+","+CN_PLAYER_IMAGE+","+CN_TEAM_IMAGE+","+CN_TEAM+") values('27010','2107'                  ,'http://thumb.resfu.com/img_data/escudos/medium/2107.jpg?size=40x&ext=png&lossy=1&1',:'http://thumb.resfu.com/img_data/players/medium/27010.jpg?size=34x&ext=png&lossy=1&1','RMA');"+
+            "Insert into "+TABLE_NAME_PLAYERS+" ("+CN_ID+","+CN_NAME+","+CN_PLAYER_IMAGE+","+CN_TEAM_IMAGE+","+CN_TEAM+") values('63294', '\u00c1. Di Mar\u00eda','http://thumb.resfu.com/img_data/escudos/medium/1924.jpg?size=40x&ext=png&lossy=1&1','http://thumb.resfu.com/img_data/players/medium/63294.jpg?size=34x&ext=png&lossy=1&1' ,'PSG');"+
+            "Insert into "+TABLE_NAME_PLAYERS+" ("+CN_ID+","+CN_NAME+","+CN_PLAYER_IMAGE+","+CN_TEAM_IMAGE+","+CN_TEAM+") values('72'   , 'G. Bale'              ,'http://thumb.resfu.com/img_data/escudos/medium/2107.jpg?size=40x&ext=png&lossy=1&1','http://thumb.resfu.com/img_data/players/medium/72.jpg?size=34x&ext=png&lossy=1&1'    ,'RMA');"+
+            "Insert into "+TABLE_NAME_PLAYERS+" ("+CN_ID+","+CN_NAME+","+CN_PLAYER_IMAGE+","+CN_TEAM_IMAGE+","+CN_TEAM+") values('588'  , 'W. Rooney'            ,'http://thumb.resfu.com/img_data/escudos/medium/1635.jpg?size=40x&ext=png&lossy=1&1','http://thumb.resfu.com/img_data/players/medium/588.jpg?size=34x&ext=png&lossy=1&1'   ,'MUD');"+
+            "Insert into "+TABLE_NAME_PLAYERS+" ("+CN_ID+","+CN_NAME+","+CN_PLAYER_IMAGE+","+CN_TEAM_IMAGE+","+CN_TEAM+") values('21065','2176'                  ,'http://thumb.resfu.com/img_data/escudos/medium/2176.jpg?size=40x&ext=png&lossy=1&1',:'http://thumb.resfu.com/img_data/players/medium/21065.jpg?size=34x&ext=png&lossy=1&1','ROM');"+
+            "Insert into "+TABLE_NAME_PLAYERS+" ("+CN_ID+","+CN_NAME+","+CN_PLAYER_IMAGE+","+CN_TEAM_IMAGE+","+CN_TEAM+") values('256'  , 'J. Terry'             ,'http://thumb.resfu.com/img_data/escudos/medium/752.jpg?size=40x&ext=png&lossy=1&1' ,'http://thumb.resfu.com/img_data/players/medium/256.jpg?size=34x&ext=png&lossy=1&1'   ,'CHL');"+
+            "Insert into "+TABLE_NAME_PLAYERS+" ("+CN_ID+","+CN_NAME+","+CN_PLAYER_IMAGE+","+CN_TEAM_IMAGE+","+CN_TEAM+") values('23348', 'G. Higua\u00edn'      ,'http://thumb.resfu.com/img_data/escudos/medium/1777.jpg?size=40x&ext=png&lossy=1&1','http://thumb.resfu.com/img_data/players/medium/23348.jpg?size=34x&ext=png&lossy=1&1' ,'NAP');"+
+            "Insert into "+TABLE_NAME_PLAYERS+" ("+CN_ID+","+CN_NAME+","+CN_PLAYER_IMAGE+","+CN_TEAM_IMAGE+","+CN_TEAM+") values('1925' , 'P. Lahm'              ,'http://thumb.resfu.com/img_data/escudos/medium/449.jpg?size=40x&ext=png&lossy=1&1' ,'http://thumb.resfu.com/img_data/players/medium/1925.jpg?size=34x&ext=png&lossy=1&1'  ,'BYM');"+
+            "Insert into "+TABLE_NAME_PLAYERS+" ("+CN_ID+","+CN_NAME+","+CN_PLAYER_IMAGE+","+CN_TEAM_IMAGE+","+CN_TEAM+") values('1237' , 'Z. Ibrahimovic'       ,'http://thumb.resfu.com/img_data/escudos/medium/1924.jpg?size=40x&ext=png&lossy=1&1','http://thumb.resfu.com/img_data/players/medium/1237.jpg?size=34x&ext=png&lossy=1&1'  ,'PSG');"+
+            "Insert into "+TABLE_NAME_PLAYERS+" ("+CN_ID+","+CN_NAME+","+CN_PLAYER_IMAGE+","+CN_TEAM_IMAGE+","+CN_TEAM+") values('396'  , 'J. Mascherano'        ,'http://thumb.resfu.com/img_data/escudos/medium/429.jpg?size=40x&ext=png&lossy=1&1' ,'http://thumb.resfu.com/img_data/players/medium/396.jpg?size=34x&ext=png&lossy=1&1'   ,'FCB');"+
+            "Insert into "+TABLE_NAME_PLAYERS+" ("+CN_ID+","+CN_NAME+","+CN_PLAYER_IMAGE+","+CN_TEAM_IMAGE+","+CN_TEAM+") values('3318' , 'K. Benzema'           ,'http://thumb.resfu.com/img_data/escudos/medium/2107.jpg?size=40x&ext=png&lossy=1&1','http://thumb.resfu.com/img_data/players/medium/3318.jpg?size=34x&ext=png&lossy=1&1'  ,'RMA');"+
+            "Insert into "+TABLE_NAME_PLAYERS+" ("+CN_ID+","+CN_NAME+","+CN_PLAYER_IMAGE+","+CN_TEAM_IMAGE+","+CN_TEAM+") values('15526', 'Thiago Silva'         ,'http://thumb.resfu.com/img_data/escudos/medium/1924.jpg?size=40x&ext=png&lossy=1&1','http://thumb.resfu.com/img_data/players/medium/15526.jpg?size=34x&ext=png&lossy=1&1' ,'PSG');"+
+            "Insert into "+TABLE_NAME_PLAYERS+" ("+CN_ID+","+CN_NAME+","+CN_PLAYER_IMAGE+","+CN_TEAM_IMAGE+","+CN_TEAM+") values('5736' , 'A. Robben'            ,'http://thumb.resfu.com/img_data/escudos/medium/449.jpg?size=40x&ext=png&lossy=1&1' ,'http://thumb.resfu.com/img_data/players/medium/5736.jpg?size=34x&ext=png&lossy=1&1'  ,'BYM');"+
+            "Insert into "+TABLE_NAME_PLAYERS+" ("+CN_ID+","+CN_NAME+","+CN_PLAYER_IMAGE+","+CN_TEAM_IMAGE+","+CN_TEAM+") values('1819' , 'M. Neuer'             ,'http://thumb.resfu.com/img_data/escudos/medium/449.jpg?size=40x&ext=png&lossy=1&1' ,'http://thumb.resfu.com/img_data/players/medium/1819.jpg?size=34x&ext=png&lossy=1&1'  ,'BYM');"+
+            "Insert into "+TABLE_NAME_PLAYERS+" ("+CN_ID+","+CN_NAME+","+CN_PLAYER_IMAGE+","+CN_TEAM_IMAGE+","+CN_TEAM+") values('64511','429'                   ,'http://thumb.resfu.com/img_data/escudos/medium/429.jpg?size=40x&ext=png&lossy=1&1' ,:'http://thumb.resfu.com/img_data/players/medium/64511.jpg?size=34x&ext=png&lossy=1&1','FCB');";
+
 
     public DataBaseManager(Context context) {
         helper = new DbHelper(context);
