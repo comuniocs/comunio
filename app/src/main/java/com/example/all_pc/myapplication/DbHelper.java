@@ -36,6 +36,7 @@ public class DbHelper extends SQLiteOpenHelper{
         db.execSQL(DataBaseManager.INSERT_PLAYER_15);
         db.execSQL(DataBaseManager.INSERT_PLAYER_16);
         db.execSQL(DataBaseManager.INSERT_PLAYER_17);
+
     }
 
     @Override

@@ -18,6 +18,10 @@ public class DataBaseManager {
     public static final String CN_TEAM_IMAGE = "imagen_equipo";
     public static final String CN_USERNAME = "username";
     public static final String CN_PASSWORD = "password";
+    public static final String CN_POINTS = "puntos";
+    public static final String CN_VALUE = "valor";
+    public static final String CN_MONEY = "dinero";
+    public static final String CN_TEAM_USER = "equipo_usuario";
     private  DbHelper helper;
     private  SQLiteDatabase db;
 
@@ -26,13 +30,19 @@ public class DataBaseManager {
             + CN_ID + " integer primary key autoincrement,"
             + CN_NAME + " text not null,"
             + CN_USERNAME + " text not null unique,"
-            + CN_PASSWORD + " text not null);";
+            + CN_PASSWORD + " text not null);"
+            + CN_TEAM_USER + "text" //Su equipo
+            + CN_POINTS + "integer" // Puntos del equipo
+            + CN_MONEY + "double"; //Dinero del equipo
+
     public  static final String CREATE_TABLE_PLAYERS = "create table " +TABLE_NAME_PLAYERS+ " ("
             + CN_ID + " integer primary key autoincrement,"
             + CN_NAME + " text not null,"
             + CN_TEAM + " text not null,"
             + CN_PLAYER_IMAGE + " text,"
-            + CN_TEAM_IMAGE + " text );";
+            + CN_TEAM_IMAGE + " text, "
+            + CN_VALUE + " double," //Precio del jugador
+            + CN_TEAM_USER + " text);"; //Equipo al que pertenece
 
     public static final String DROP_TABLE_PLAYER = "drop table "+TABLE_NAME_PLAYERS +" IF EXIST;";
 
@@ -104,4 +114,33 @@ public class DataBaseManager {
         }
     }
 
+    public int comprarjugador (String[] jug,String[] equipo){
+        String[] col=new String[]{"valor"};
+        Cursor c = db.query(TABLE_NAME,col,"equipo_user=?",equipo,null,null,null);
+        double aux = c.getDouble(0);
+        c = db.query(TABLE_NAME_PLAYERS, col, "nombre=?", jug, null, null, null);
+        aux = aux - c.getDouble(0);
+        if (aux>0){ //Compra el jugador
+            // FALTA ACTUALIZAR JUGADOR Y RESTAR DINERO
+            return 1;
+        } else { // No puede comprar el jugador
+            return 0;
+        }
+    }
+
+    public void venderjugador(String[] jug, String[] equipo){
+        String[] col=new String[]{"valor"};
+        Cursor c = db.query(TABLE_NAME_PLAYERS, col, "nombre=?", jug, null, null, null);
+        double aux = c.getDouble(0);
+        c = db.query(TABLE_NAME,col,"equipo_user=?",equipo,null,null,null);
+        aux = aux + c.getDouble(0);
+        db.execSQL("UPDATE players SET equipo_user='NULL' WHERE nombre=? ",jug);
+        // FALTA SUMAR DINERO AL EQUIPO
+
+    }
+
+    public Cursor cargarClasificacion(){
+        String []col= new String[]{CN_ID,CN_USERNAME,CN_POINTS};
+        return db.query(TABLE_NAME,col,null,null,null,null,null);
+    }
 }
