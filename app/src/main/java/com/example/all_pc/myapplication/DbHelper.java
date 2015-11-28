@@ -19,14 +19,46 @@ public class DbHelper extends SQLiteOpenHelper{
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(DataBaseManager.CREATE_TABLE_USERS);
         db.execSQL(DataBaseManager.CREATE_TABLE_PLAYERS);
-        db.execSQL(DataBaseManager.INSERT_PLAYERS);
-
-
+        db.execSQL(DataBaseManager.INSERT_PLAYER_1);
+        db.execSQL(DataBaseManager.INSERT_PLAYER_2);
+        db.execSQL(DataBaseManager.INSERT_PLAYER_3);
+        db.execSQL(DataBaseManager.INSERT_PLAYER_4);
+        db.execSQL(DataBaseManager.INSERT_PLAYER_5);
+        db.execSQL(DataBaseManager.INSERT_PLAYER_6);
+        db.execSQL(DataBaseManager.INSERT_PLAYER_7);
+        db.execSQL(DataBaseManager.INSERT_PLAYER_8);
+        db.execSQL(DataBaseManager.INSERT_PLAYER_9);
+        db.execSQL(DataBaseManager.INSERT_PLAYER_10);
+        db.execSQL(DataBaseManager.INSERT_PLAYER_11);
+        db.execSQL(DataBaseManager.INSERT_PLAYER_12);
+        db.execSQL(DataBaseManager.INSERT_PLAYER_13);
+        db.execSQL(DataBaseManager.INSERT_PLAYER_14);
+        db.execSQL(DataBaseManager.INSERT_PLAYER_15);
+        db.execSQL(DataBaseManager.INSERT_PLAYER_16);
+        db.execSQL(DataBaseManager.INSERT_PLAYER_17);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-
+        db.execSQL(DataBaseManager.DROP_TABLE_PLAYER);
+        db.execSQL(DataBaseManager.CREATE_TABLE_PLAYERS);
+        db.execSQL(DataBaseManager.INSERT_PLAYER_1);
+        db.execSQL(DataBaseManager.INSERT_PLAYER_2);
+        db.execSQL(DataBaseManager.INSERT_PLAYER_3);
+        db.execSQL(DataBaseManager.INSERT_PLAYER_4);
+        db.execSQL(DataBaseManager.INSERT_PLAYER_5);
+        db.execSQL(DataBaseManager.INSERT_PLAYER_6);
+        db.execSQL(DataBaseManager.INSERT_PLAYER_7);
+        db.execSQL(DataBaseManager.INSERT_PLAYER_8);
+        db.execSQL(DataBaseManager.INSERT_PLAYER_9);
+        db.execSQL(DataBaseManager.INSERT_PLAYER_10);
+        db.execSQL(DataBaseManager.INSERT_PLAYER_11);
+        db.execSQL(DataBaseManager.INSERT_PLAYER_12);
+        db.execSQL(DataBaseManager.INSERT_PLAYER_13);
+        db.execSQL(DataBaseManager.INSERT_PLAYER_14);
+        db.execSQL(DataBaseManager.INSERT_PLAYER_15);
+        db.execSQL(DataBaseManager.INSERT_PLAYER_16);
+        db.execSQL(DataBaseManager.INSERT_PLAYER_17);
     }
 }
 
