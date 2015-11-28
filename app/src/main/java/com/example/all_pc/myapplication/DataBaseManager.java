@@ -18,6 +18,10 @@ public class DataBaseManager {
     public static final String CN_TEAM_IMAGE = "imagen_equipo";
     public static final String CN_USERNAME = "username";
     public static final String CN_PASSWORD = "password";
+    public static final String CN_POINTS = "puntos";
+    public static final String CN_VALUE = "valor";
+    public static final String CN_MONEY = "dinero";
+    public static final String CN_TEAM_USER = "equipo_usuario";
     private  DbHelper helper;
     private  SQLiteDatabase db;
 
@@ -26,13 +30,18 @@ public class DataBaseManager {
             + CN_ID + " integer primary key autoincrement,"
             + CN_NAME + " text not null,"
             + CN_USERNAME + " text not null unique,"
-            + CN_PASSWORD + " text not null);";
+            + CN_PASSWORD + " text not null);"
+            + CN_TEAM_USER + "text" //Su equipo
+            + CN_POINTS + "integer" // Puntos del equipo
+            + CN_MONEY + "double"; //Dinero del equipo
     public  static final String CREATE_TABLE_PLAYERS = "create table " +TABLE_NAME_PLAYERS+ " ("
             + CN_ID + " integer primary key autoincrement,"
             + CN_NAME + " text not null,"
             + CN_TEAM + " text not null,"
             + CN_PLAYER_IMAGE + "text not null"
-            + CN_TEAM_IMAGE + "text not null);";
+            + CN_TEAM_IMAGE + "text not null);"
+            + CN_VALUE + "double" //Precio del jugador
+            + CN_TEAM_USER + "text"; //Equipo al que pertenece
 
     public static final String INSERT_PLAYERS = "Insert into "+TABLE_NAME_PLAYERS+" ("+CN_ID+","+CN_NAME+","+CN_PLAYER_IMAGE+","+CN_TEAM_IMAGE+","+CN_TEAM+") values('23569','L. Messi'              ,'http://thumb.resfu.com/img_data/escudos/medium/429.jpg?size=40x&ext=png&lossy=1&1' ,'http://thumb.resfu.com/img_data/players/medium/23569.jpg?size=34x&ext=png&lossy=1&1' ,'FCB');"+
             "Insert into "+TABLE_NAME_PLAYERS+" ("+CN_ID+","+CN_NAME+","+CN_PLAYER_IMAGE+","+CN_TEAM_IMAGE+","+CN_TEAM+") values('28185', 'C. Ronaldo'           ,'http://thumb.resfu.com/img_data/escudos/medium/2107.jpg?size=40x&ext=png&lossy=1&1','http://thumb.resfu.com/img_data/players/medium/28185.jpg?size=34x&ext=png&lossy=1&1' ,'RMA');"+
@@ -106,4 +115,19 @@ public class DataBaseManager {
         }
     }
 
+    public void venderjugador(String[] jug, String[] username){
+        String[] col=new String[]{"valor"};
+        Cursor c = db.query(TABLE_NAME_PLAYERS, col, "nombre=?", jug, null, null, null);
+        double aux = c.getDouble(0);
+        c = db.query(TABLE_NAME,col,"equipo_user=?",username,null,null,null);
+        aux = aux + c.getDouble(0);
+        db.execSQL("UPDATE players SET equipo_user='NULL' WHERE nombre=? ",jug);
+        // FALTA SUMAR DINERO AL EQUIPO
+
+    }
+
+    public Cursor cargarClasificacion(){
+        String []col= new String[]{CN_ID,CN_USERNAME,CN_POINTS};
+        return db.query(TABLE_NAME,col,null,null,null,null,null);
+    }
 }

@@ -19,7 +19,7 @@ public class DbHelper extends SQLiteOpenHelper{
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(DataBaseManager.CREATE_TABLE_USERS);
         db.execSQL(DataBaseManager.CREATE_TABLE_PLAYERS);
-        db.execSQL(DataBaseManager.INSERT_PLAYERS);
+        //db.execSQL(DataBaseManager.INSERT_PLAYERS);
 
 
     }

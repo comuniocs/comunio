@@ -4,13 +4,9 @@
     android:background="#2d7f2d"
     android:weightSum="1">
 
-    <TextView
-        android:layout_width="match_parent"
+    <ListView
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Proximamente"
-        android:id="@+id/textView4"
-        android:layout_gravity="center_vertical"
-        android:textAlignment="center"
-        android:textSize="25dp" />
+        android:id="@+id/listClasificacion"
+        android:layout_weight="1" />
 </LinearLayout>
