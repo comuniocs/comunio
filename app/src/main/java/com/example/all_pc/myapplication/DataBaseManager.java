@@ -115,11 +115,25 @@ public class DataBaseManager {
         }
     }
 
-    public void venderjugador(String[] jug, String[] username){
+    public int comprarjugador (String[] jug,String[] equipo){
+        String[] col=new String[]{"valor"};
+        Cursor c = db.query(TABLE_NAME,col,"equipo_user=?",equipo,null,null,null);
+        double aux = c.getDouble(0);
+        c = db.query(TABLE_NAME_PLAYERS, col, "nombre=?", jug, null, null, null);
+        aux = aux - c.getDouble(0);
+        if (aux>0){ //Compra el jugador
+            // FALTA ACTUALIZAR JUGADOR Y RESTAR DINERO
+            return 1;
+        } else { // No puede comprar el jugador
+            return 0;
+        }
+    }
+
+    public void venderjugador(String[] jug, String[] equipo){
         String[] col=new String[]{"valor"};
         Cursor c = db.query(TABLE_NAME_PLAYERS, col, "nombre=?", jug, null, null, null);
         double aux = c.getDouble(0);
-        c = db.query(TABLE_NAME,col,"equipo_user=?",username,null,null,null);
+        c = db.query(TABLE_NAME,col,"equipo_user=?",equipo,null,null,null);
         aux = aux + c.getDouble(0);
         db.execSQL("UPDATE players SET equipo_user='NULL' WHERE nombre=? ",jug);
         // FALTA SUMAR DINERO AL EQUIPO
