@@ -9,6 +9,8 @@ import android.view.ViewGroup;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 
+import java.util.List;
+
 /**
  * Created by All-PC on 16/10/2015.
  */
@@ -27,12 +29,19 @@ public class FnClasificacion extends Fragment {
         manager = new DataBaseManager(getActivity());
         lista = (ListView) rootView.findViewById(R.id.listClasificacion);
 
-        String[] from = new String[]{manager.CN_USERNAME,manager.CN_POINTS};
-        int[] to = new int[] {android.R.id.text1,android.R.id.text2};
+        List<Team> teams;
+        teams = manager.getEquiposClasificacion();
+        lista.setAdapter(new TeamAdapter(getActivity(),teams));
+
+
+
+
+        /*String[] from = new String[]{manager.CN_USERNAME};
+        int[] to = new int[] {android.R.id.text1};
 
         cursor = manager.cargarClasificacion();
         adapter = new SimpleCursorAdapter(getActivity(),android.R.layout.two_line_list_item,cursor,from,to);
-        lista.setAdapter(adapter);
+        lista.setAdapter(adapter);*/
 
         return rootView;
     }
