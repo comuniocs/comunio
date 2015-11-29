@@ -17,8 +17,11 @@ public class DbHelper extends SQLiteOpenHelper{
 
     @Override
     public void onCreate(SQLiteDatabase db) {
+        System.out.println("CREANDO BBDD");
         db.execSQL(DataBaseManager.CREATE_TABLE_USERS);
+        System.out.println(DataBaseManager.CREATE_TABLE_USERS);
         db.execSQL(DataBaseManager.CREATE_TABLE_PLAYERS);
+        System.out.println(DataBaseManager.CREATE_TABLE_PLAYERS);
         db.execSQL(DataBaseManager.INSERT_PLAYER_1);
         db.execSQL(DataBaseManager.INSERT_PLAYER_2);
         db.execSQL(DataBaseManager.INSERT_PLAYER_3);
@@ -41,8 +44,13 @@ public class DbHelper extends SQLiteOpenHelper{
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+        System.out.println("ACTUALIZANDO BBDD");
         db.execSQL(DataBaseManager.DROP_TABLE_PLAYER);
+        db.execSQL(DataBaseManager.DROP_TABLE_USERS);
+        db.execSQL(DataBaseManager.CREATE_TABLE_USERS);
+        System.out.println(DataBaseManager.CREATE_TABLE_USERS);
         db.execSQL(DataBaseManager.CREATE_TABLE_PLAYERS);
+        System.out.println(DataBaseManager.CREATE_TABLE_PLAYERS);
         db.execSQL(DataBaseManager.INSERT_PLAYER_1);
         db.execSQL(DataBaseManager.INSERT_PLAYER_2);
         db.execSQL(DataBaseManager.INSERT_PLAYER_3);

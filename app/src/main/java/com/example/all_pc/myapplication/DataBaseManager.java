@@ -5,6 +5,9 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by Randal on 1/11/15.
  */
@@ -21,6 +24,7 @@ public class DataBaseManager {
     public static final String CN_POINTS = "puntos";
     public static final String CN_VALUE = "valor";
     public static final String CN_MONEY = "dinero";
+    public static final String CN_POSITION = "posicion";
     public static final String CN_TEAM_USER = "equipo_usuario";
     private  DbHelper helper;
     private  SQLiteDatabase db;
@@ -30,39 +34,41 @@ public class DataBaseManager {
             + CN_ID + " integer primary key autoincrement,"
             + CN_NAME + " text not null,"
             + CN_USERNAME + " text not null unique,"
-            + CN_PASSWORD + " text not null);"
-            + CN_TEAM_USER + "text" //Su equipo
-            + CN_POINTS + "integer" // Puntos del equipo
-            + CN_MONEY + "double"; //Dinero del equipo
+            + CN_PASSWORD + " text not null,"
+            + CN_TEAM_USER + " text," //Su equipo
+            + CN_POINTS + " integer," // Puntos del equipo
+            + CN_MONEY + " integer );"; //Dinero del equipo
 
     public  static final String CREATE_TABLE_PLAYERS = "create table " +TABLE_NAME_PLAYERS+ " ("
             + CN_ID + " integer primary key autoincrement,"
             + CN_NAME + " text not null,"
             + CN_TEAM + " text not null,"
             + CN_PLAYER_IMAGE + " text,"
-            + CN_TEAM_IMAGE + " text, "
-            + CN_VALUE + " double," //Precio del jugador
+            + CN_TEAM_IMAGE + " text,"
+            + CN_POSITION + " text,"
+            + CN_VALUE + " integer," //Precio del jugador
             + CN_TEAM_USER + " text);"; //Equipo al que pertenece
 
     public static final String DROP_TABLE_PLAYER = "drop table "+TABLE_NAME_PLAYERS +" IF EXIST;";
+    public static final String DROP_TABLE_USERS = "drop table "+TABLE_NAME +" IF EXIST;";
 
-    public static final String INSERT_PLAYER_1 = "Insert into "+TABLE_NAME_PLAYERS+" ("+CN_NAME+","+CN_PLAYER_IMAGE+","+CN_TEAM_IMAGE+","+CN_TEAM+") values('L. Messi','http://thumb.resfu.com/img_data/escudos/medium/429.jpg?size=40x&ext=png&lossy=1&1','http://thumb.resfu.com/img_data/players/medium/23569.jpg?size=34x&ext=png&lossy=1&1','FCB');";
-    public static final String INSERT_PLAYER_2 = "Insert into "+TABLE_NAME_PLAYERS+" ("+CN_NAME+","+CN_PLAYER_IMAGE+","+CN_TEAM_IMAGE+","+CN_TEAM+") values('C. Ronaldo','http://thumb.resfu.com/img_data/escudos/medium/2107.jpg?size=40x&ext=png&lossy=1&1','http://thumb.resfu.com/img_data/players/medium/28185.jpg?size=34x&ext=png&lossy=1&1','RMA');";
-    public static final String INSERT_PLAYER_3 = "Insert into "+TABLE_NAME_PLAYERS+" ("+CN_NAME+","+CN_PLAYER_IMAGE+","+CN_TEAM_IMAGE+","+CN_TEAM+") values('D. Alves','http://thumb.resfu.com/img_data/escudos/medium/429.jpg?size=40x&ext=png&lossy=1&1','http://thumb.resfu.com/img_data/players/medium/23559.jpg?size=34x&ext=png&lossy=1&1','FCB');";
-    public static final String INSERT_PLAYER_4 = "Insert into "+TABLE_NAME_PLAYERS+" ("+CN_NAME+","+CN_PLAYER_IMAGE+","+CN_TEAM_IMAGE+","+CN_TEAM+") values('Marcelo','http://thumb.resfu.com/img_data/escudos/medium/2107.jpg?size=40x&ext=png&lossy=1&1','http://thumb.resfu.com/img_data/players/medium/23343.jpg?size=34x&ext=png&lossy=1&1','RMA');";
-    public static final String INSERT_PLAYER_5 = "Insert into "+TABLE_NAME_PLAYERS+" ("+CN_NAME+","+CN_PLAYER_IMAGE+","+CN_TEAM_IMAGE+","+CN_TEAM+") values('M. Ozil','http://thumb.resfu.com/img_data/escudos/medium/263.jpg?size=40x&ext=png&lossy=1&1','http://thumb.resfu.com/img_data/players/medium/2133.jpg?size=34x&ext=png&lossy=1&1','ARS');";
-    public static final String INSERT_PLAYER_6 = "Insert into "+TABLE_NAME_PLAYERS+" ("+CN_NAME+","+CN_PLAYER_IMAGE+","+CN_TEAM_IMAGE+","+CN_TEAM+") values('A. Di Maria','http://thumb.resfu.com/img_data/escudos/medium/1924.jpg?size=40x&ext=png&lossy=1&1','http://thumb.resfu.com/img_data/players/medium/63294.jpg?size=34x&ext=png&lossy=1&1' ,'PSG');";
-    public static final String INSERT_PLAYER_7 = "Insert into "+TABLE_NAME_PLAYERS+" ("+CN_NAME+","+CN_PLAYER_IMAGE+","+CN_TEAM_IMAGE+","+CN_TEAM+") values('G. Bale','http://thumb.resfu.com/img_data/escudos/medium/2107.jpg?size=40x&ext=png&lossy=1&1','http://thumb.resfu.com/img_data/players/medium/72.jpg?size=34x&ext=png&lossy=1&1','RMA');";
-    public static final String INSERT_PLAYER_8 = "Insert into "+TABLE_NAME_PLAYERS+" ("+CN_NAME+","+CN_PLAYER_IMAGE+","+CN_TEAM_IMAGE+","+CN_TEAM+") values('W. Rooney','http://thumb.resfu.com/img_data/escudos/medium/1635.jpg?size=40x&ext=png&lossy=1&1','http://thumb.resfu.com/img_data/players/medium/588.jpg?size=34x&ext=png&lossy=1&1','MUD');";
-    public static final String INSERT_PLAYER_9 = "Insert into "+TABLE_NAME_PLAYERS+" ("+CN_NAME+","+CN_PLAYER_IMAGE+","+CN_TEAM_IMAGE+","+CN_TEAM+") values('J. Terry','http://thumb.resfu.com/img_data/escudos/medium/752.jpg?size=40x&ext=png&lossy=1&1','http://thumb.resfu.com/img_data/players/medium/256.jpg?size=34x&ext=png&lossy=1&1','CHL');";
-    public static final String INSERT_PLAYER_10 = "Insert into "+TABLE_NAME_PLAYERS+" ("+CN_NAME+","+CN_PLAYER_IMAGE+","+CN_TEAM_IMAGE+","+CN_TEAM+") values('G. Higuain','http://thumb.resfu.com/img_data/escudos/medium/1777.jpg?size=40x&ext=png&lossy=1&1','http://thumb.resfu.com/img_data/players/medium/23348.jpg?size=34x&ext=png&lossy=1&1','NAP');";
-    public static final String INSERT_PLAYER_11 = "Insert into "+TABLE_NAME_PLAYERS+" ("+CN_NAME+","+CN_PLAYER_IMAGE+","+CN_TEAM_IMAGE+","+CN_TEAM+") values('P. Lahm','http://thumb.resfu.com/img_data/escudos/medium/449.jpg?size=40x&ext=png&lossy=1&1','http://thumb.resfu.com/img_data/players/medium/1925.jpg?size=34x&ext=png&lossy=1&1','BYM');";
-    public static final String INSERT_PLAYER_12 = "Insert into "+TABLE_NAME_PLAYERS+" ("+CN_NAME+","+CN_PLAYER_IMAGE+","+CN_TEAM_IMAGE+","+CN_TEAM+") values('Z. Ibrahimovic','http://thumb.resfu.com/img_data/escudos/medium/1924.jpg?size=40x&ext=png&lossy=1&1','http://thumb.resfu.com/img_data/players/medium/1237.jpg?size=34x&ext=png&lossy=1&1','PSG');";
-    public static final String INSERT_PLAYER_13 = "Insert into "+TABLE_NAME_PLAYERS+" ("+CN_NAME+","+CN_PLAYER_IMAGE+","+CN_TEAM_IMAGE+","+CN_TEAM+") values('J. Mascherano','http://thumb.resfu.com/img_data/escudos/medium/429.jpg?size=40x&ext=png&lossy=1&1','http://thumb.resfu.com/img_data/players/medium/396.jpg?size=34x&ext=png&lossy=1&1','FCB');";
-    public static final String INSERT_PLAYER_14 = "Insert into "+TABLE_NAME_PLAYERS+" ("+CN_NAME+","+CN_PLAYER_IMAGE+","+CN_TEAM_IMAGE+","+CN_TEAM+") values('K. Benzema','http://thumb.resfu.com/img_data/escudos/medium/2107.jpg?size=40x&ext=png&lossy=1&1','http://thumb.resfu.com/img_data/players/medium/3318.jpg?size=34x&ext=png&lossy=1&1','RMA');";
-    public static final String INSERT_PLAYER_15 = "Insert into "+TABLE_NAME_PLAYERS+" ("+CN_NAME+","+CN_PLAYER_IMAGE+","+CN_TEAM_IMAGE+","+CN_TEAM+") values('Thiago Silva','http://thumb.resfu.com/img_data/escudos/medium/1924.jpg?size=40x&ext=png&lossy=1&1','http://thumb.resfu.com/img_data/players/medium/15526.jpg?size=34x&ext=png&lossy=1&1','PSG');";
-    public static final String INSERT_PLAYER_16 = "Insert into "+TABLE_NAME_PLAYERS+" ("+CN_NAME+","+CN_PLAYER_IMAGE+","+CN_TEAM_IMAGE+","+CN_TEAM+") values('A. Robben','http://thumb.resfu.com/img_data/escudos/medium/449.jpg?size=40x&ext=png&lossy=1&1','http://thumb.resfu.com/img_data/players/medium/5736.jpg?size=34x&ext=png&lossy=1&1','BYM');";
-    public static final String INSERT_PLAYER_17 = "Insert into "+TABLE_NAME_PLAYERS+" ("+CN_NAME+","+CN_PLAYER_IMAGE+","+CN_TEAM_IMAGE+","+CN_TEAM+") values('M. Neuer','http://thumb.resfu.com/img_data/escudos/medium/449.jpg?size=40x&ext=png&lossy=1&1','http://thumb.resfu.com/img_data/players/medium/1819.jpg?size=34x&ext=png&lossy=1&1','BYM');";
+    public static final String INSERT_PLAYER_1 = "Insert into "+TABLE_NAME_PLAYERS+" ("+CN_NAME+","+CN_POSITION+","+CN_PLAYER_IMAGE+","+CN_TEAM_IMAGE+","+CN_TEAM+") values('L. Messi', 'Delantero','http://thumb.resfu.com/img_data/escudos/medium/429.jpg?size=40x&ext=png&lossy=1&1','http://thumb.resfu.com/img_data/players/medium/23569.jpg?size=34x&ext=png&lossy=1&1','FCB');";
+    public static final String INSERT_PLAYER_2 = "Insert into "+TABLE_NAME_PLAYERS+" ("+CN_NAME+","+CN_POSITION+","+CN_PLAYER_IMAGE+","+CN_TEAM_IMAGE+","+CN_TEAM+") values('C. Ronaldo','Delantero','http://thumb.resfu.com/img_data/escudos/medium/2107.jpg?size=40x&ext=png&lossy=1&1','http://thumb.resfu.com/img_data/players/medium/28185.jpg?size=34x&ext=png&lossy=1&1','RMA');";
+    public static final String INSERT_PLAYER_3 = "Insert into "+TABLE_NAME_PLAYERS+" ("+CN_NAME+","+CN_POSITION+","+CN_PLAYER_IMAGE+","+CN_TEAM_IMAGE+","+CN_TEAM+") values('D. Alves', 'Defensa','http://thumb.resfu.com/img_data/escudos/medium/429.jpg?size=40x&ext=png&lossy=1&1','http://thumb.resfu.com/img_data/players/medium/23559.jpg?size=34x&ext=png&lossy=1&1','FCB');";
+    public static final String INSERT_PLAYER_4 = "Insert into "+TABLE_NAME_PLAYERS+" ("+CN_NAME+","+CN_POSITION+","+CN_PLAYER_IMAGE+","+CN_TEAM_IMAGE+","+CN_TEAM+") values('Marcelo', 'Defensa','http://thumb.resfu.com/img_data/escudos/medium/2107.jpg?size=40x&ext=png&lossy=1&1','http://thumb.resfu.com/img_data/players/medium/23343.jpg?size=34x&ext=png&lossy=1&1','RMA');";
+    public static final String INSERT_PLAYER_5 = "Insert into "+TABLE_NAME_PLAYERS+" ("+CN_NAME+","+CN_POSITION+","+CN_PLAYER_IMAGE+","+CN_TEAM_IMAGE+","+CN_TEAM+") values('M. Ozil','Medio','http://thumb.resfu.com/img_data/escudos/medium/263.jpg?size=40x&ext=png&lossy=1&1','http://thumb.resfu.com/img_data/players/medium/2133.jpg?size=34x&ext=png&lossy=1&1','ARS');";
+    public static final String INSERT_PLAYER_6 = "Insert into "+TABLE_NAME_PLAYERS+" ("+CN_NAME+","+CN_POSITION+","+CN_PLAYER_IMAGE+","+CN_TEAM_IMAGE+","+CN_TEAM+") values('A. Di Maria','Medio','http://thumb.resfu.com/img_data/escudos/medium/1924.jpg?size=40x&ext=png&lossy=1&1','http://thumb.resfu.com/img_data/players/medium/63294.jpg?size=34x&ext=png&lossy=1&1' ,'PSG');";
+    public static final String INSERT_PLAYER_7 = "Insert into "+TABLE_NAME_PLAYERS+" ("+CN_NAME+","+CN_POSITION+","+CN_PLAYER_IMAGE+","+CN_TEAM_IMAGE+","+CN_TEAM+") values('G. Bale','Delantero','http://thumb.resfu.com/img_data/escudos/medium/2107.jpg?size=40x&ext=png&lossy=1&1','http://thumb.resfu.com/img_data/players/medium/72.jpg?size=34x&ext=png&lossy=1&1','RMA');";
+    public static final String INSERT_PLAYER_8 = "Insert into "+TABLE_NAME_PLAYERS+" ("+CN_NAME+","+CN_POSITION+","+CN_PLAYER_IMAGE+","+CN_TEAM_IMAGE+","+CN_TEAM+") values('W. Rooney','Delantero','http://thumb.resfu.com/img_data/escudos/medium/1635.jpg?size=40x&ext=png&lossy=1&1','http://thumb.resfu.com/img_data/players/medium/588.jpg?size=34x&ext=png&lossy=1&1','MUD');";
+    public static final String INSERT_PLAYER_9 = "Insert into "+TABLE_NAME_PLAYERS+" ("+CN_NAME+","+CN_POSITION+","+CN_PLAYER_IMAGE+","+CN_TEAM_IMAGE+","+CN_TEAM+") values('J. Terry', 'Defensa','http://thumb.resfu.com/img_data/escudos/medium/752.jpg?size=40x&ext=png&lossy=1&1','http://thumb.resfu.com/img_data/players/medium/256.jpg?size=34x&ext=png&lossy=1&1','CHL');";
+    public static final String INSERT_PLAYER_10 = "Insert into "+TABLE_NAME_PLAYERS+" ("+CN_NAME+","+CN_POSITION+","+CN_PLAYER_IMAGE+","+CN_TEAM_IMAGE+","+CN_TEAM+") values('G. Higuain','Delantero','http://thumb.resfu.com/img_data/escudos/medium/1777.jpg?size=40x&ext=png&lossy=1&1','http://thumb.resfu.com/img_data/players/medium/23348.jpg?size=34x&ext=png&lossy=1&1','NAP');";
+    public static final String INSERT_PLAYER_11 = "Insert into "+TABLE_NAME_PLAYERS+" ("+CN_NAME+","+CN_POSITION+","+CN_PLAYER_IMAGE+","+CN_TEAM_IMAGE+","+CN_TEAM+") values('P. Lahm', 'Defensa','http://thumb.resfu.com/img_data/escudos/medium/449.jpg?size=40x&ext=png&lossy=1&1','http://thumb.resfu.com/img_data/players/medium/1925.jpg?size=34x&ext=png&lossy=1&1','BYM');";
+    public static final String INSERT_PLAYER_12 = "Insert into "+TABLE_NAME_PLAYERS+" ("+CN_NAME+","+CN_POSITION+","+CN_PLAYER_IMAGE+","+CN_TEAM_IMAGE+","+CN_TEAM+") values('Z. Ibrahimovic','Delantero','http://thumb.resfu.com/img_data/escudos/medium/1924.jpg?size=40x&ext=png&lossy=1&1','http://thumb.resfu.com/img_data/players/medium/1237.jpg?size=34x&ext=png&lossy=1&1','PSG');";
+    public static final String INSERT_PLAYER_13 = "Insert into "+TABLE_NAME_PLAYERS+" ("+CN_NAME+","+CN_POSITION+","+CN_PLAYER_IMAGE+","+CN_TEAM_IMAGE+","+CN_TEAM+") values('J. Mascherano','Defensa','http://thumb.resfu.com/img_data/escudos/medium/429.jpg?size=40x&ext=png&lossy=1&1','http://thumb.resfu.com/img_data/players/medium/396.jpg?size=34x&ext=png&lossy=1&1','FCB');";
+    public static final String INSERT_PLAYER_14 = "Insert into "+TABLE_NAME_PLAYERS+" ("+CN_NAME+","+CN_POSITION+","+CN_PLAYER_IMAGE+","+CN_TEAM_IMAGE+","+CN_TEAM+") values('K. Benzema','Delantero','http://thumb.resfu.com/img_data/escudos/medium/2107.jpg?size=40x&ext=png&lossy=1&1','http://thumb.resfu.com/img_data/players/medium/3318.jpg?size=34x&ext=png&lossy=1&1','RMA');";
+    public static final String INSERT_PLAYER_15 = "Insert into "+TABLE_NAME_PLAYERS+" ("+CN_NAME+","+CN_POSITION+","+CN_PLAYER_IMAGE+","+CN_TEAM_IMAGE+","+CN_TEAM+") values('Thiago Silva','Defensa','http://thumb.resfu.com/img_data/escudos/medium/1924.jpg?size=40x&ext=png&lossy=1&1','http://thumb.resfu.com/img_data/players/medium/15526.jpg?size=34x&ext=png&lossy=1&1','PSG');";
+    public static final String INSERT_PLAYER_16 = "Insert into "+TABLE_NAME_PLAYERS+" ("+CN_NAME+","+CN_POSITION+","+CN_PLAYER_IMAGE+","+CN_TEAM_IMAGE+","+CN_TEAM+") values('A. Robben','Medio','http://thumb.resfu.com/img_data/escudos/medium/449.jpg?size=40x&ext=png&lossy=1&1','http://thumb.resfu.com/img_data/players/medium/5736.jpg?size=34x&ext=png&lossy=1&1','BYM');";
+    public static final String INSERT_PLAYER_17 = "Insert into "+TABLE_NAME_PLAYERS+" ("+CN_NAME+","+CN_POSITION+","+CN_PLAYER_IMAGE+","+CN_TEAM_IMAGE+","+CN_TEAM+") values('M. Neuer','Portero','http://thumb.resfu.com/img_data/escudos/medium/449.jpg?size=40x&ext=png&lossy=1&1','http://thumb.resfu.com/img_data/players/medium/1819.jpg?size=34x&ext=png&lossy=1&1','BYM');";
 
     public DataBaseManager(Context context) {
         helper = new DbHelper(context);
@@ -110,6 +116,38 @@ public class DataBaseManager {
             return true;
         }else{
             return false;
+
+        }
+    }
+
+    public List<Player> getJugadoresSinEquipo (){
+        Cursor c = db.rawQuery("SELECT * FROM "+ TABLE_NAME_PLAYERS + " WHERE "+CN_TEAM_USER +" IS NULL", null);
+        List<Player> players = new ArrayList<Player>();
+        if (c.moveToFirst()) {
+            do{
+                Player jugador = new Player(c.getInt(0), c.getString(1), c.getString(2), c.getString(3), c.getString(4), c.getString(5), c.getInt(6), c.getString(7));
+                players.add(jugador);
+
+            }while(c.moveToNext());
+            return players;
+        }else{
+            return players;
+
+        }
+    }
+
+    public List<Player> getJugadoresDeEquipo (String user_team){
+        Cursor c = db.rawQuery("SELECT * FROM "+ TABLE_NAME_PLAYERS + "WHERE "+CN_TEAM_USER +" ='"+user_team+"'", null);
+        List<Player> players = new ArrayList<Player>();
+        if (c.moveToFirst()) {
+            do{
+                Player jugador = new Player(c.getInt(0), c.getString(1), c.getString(2), c.getString(3), c.getString(4), c.getString(5), c.getInt(6), c.getString(7));
+                players.add(jugador);
+
+            }while(c.moveToNext());
+            return players;
+        }else{
+            return players;
 
         }
     }
