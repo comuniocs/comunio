@@ -150,7 +150,7 @@ public class DataBaseManager {
     }
 
     public List<Player> getJugadoresDeEquipo (String user_team){
-        Cursor c = db.rawQuery("SELECT * FROM "+ TABLE_NAME_PLAYERS + "WHERE "+CN_TEAM_USER +" ='"+user_team+"'", null);
+        Cursor c = db.rawQuery("SELECT * FROM "+ TABLE_NAME_PLAYERS +" WHERE "+CN_TEAM_USER +" = '"+user_team+"'", null);
         List<Player> players = new ArrayList<Player>();
         if (c.moveToFirst()) {
             do{
