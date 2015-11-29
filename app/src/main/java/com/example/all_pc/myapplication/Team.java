@@ -27,6 +27,10 @@ public class Team {
         this.dinero = dinero;
     }
 
+    public Team(){
+
+    }
+
     public int getDinero() {
         return dinero;
     }

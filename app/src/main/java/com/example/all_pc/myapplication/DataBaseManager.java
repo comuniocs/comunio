@@ -35,7 +35,6 @@ public class DataBaseManager {
             + CN_NAME + " text not null,"
             + CN_USERNAME + " text not null unique,"
             + CN_PASSWORD + " text not null,"
-            + CN_TEAM_USER + " text," //Su equipo
             + CN_POINTS + " integer," // Puntos del equipo
             + CN_MONEY + " integer );"; //Dinero del equipo
 
@@ -120,6 +119,20 @@ public class DataBaseManager {
         }
     }
 
+    public int getID_user(String username){
+        Cursor c = db.rawQuery("SELECT "+CN_ID+" FROM "+ TABLE_NAME + " WHERE username = '"+username+"'", null);
+        c.moveToFirst();
+        int i=c.getInt(0);
+        return i;
+    }
+
+    public String getTeam_user(int id){
+        Cursor c = db.rawQuery("SELECT "+CN_NAME+" FROM "+ TABLE_NAME + " WHERE _id = '"+id+"'", null);
+        c.moveToFirst();
+        String team_user= c.getString(0);
+        return team_user;
+    }
+
     public List<Player> getJugadoresSinEquipo (){
         Cursor c = db.rawQuery("SELECT * FROM "+ TABLE_NAME_PLAYERS + " WHERE "+CN_TEAM_USER +" IS NULL", null);
         List<Player> players = new ArrayList<Player>();
@@ -152,21 +165,21 @@ public class DataBaseManager {
         }
     }
 
-    public int comprarjugador (String[] jug,String[] equipo){
+    /*public int comprarjugador (String[] jug,String[] equipo){
         String[] col=new String[]{"valor"};
-        Cursor c = db.query(TABLE_NAME,col,"equipo_user=?",equipo,null,null,null);
+        Cursor c = db.query(TABLE_NAME, col, "equipo_user=?", equipo, null, null, null);
         double aux = c.getDouble(0);
         c = db.query(TABLE_NAME_PLAYERS, col, "nombre=?", jug, null, null, null);
         aux = aux - c.getDouble(0);
-        if (aux>0){ //Compra el jugador
+        if (aux>=0){ //Compra el jugador
             // FALTA ACTUALIZAR JUGADOR Y RESTAR DINERO
             return 1;
         } else { // No puede comprar el jugador
             return 0;
         }
-    }
+    }*/
 
-    public void venderjugador(String[] jug, String[] equipo){
+    /*public void venderjugador(String[] jug, String[] equipo){
         double aux=0;
         String[] col=new String[]{"valor"};
         Cursor c = db.query(TABLE_NAME_PLAYERS, col, "nombre=?", jug, null, null, null);
@@ -180,8 +193,31 @@ public class DataBaseManager {
         db.execSQL("UPDATE players SET equipo_user='NULL' WHERE nombre=? ",jug);
         // FALTA SUMAR DINERO AL EQUIPO
 
+    }*/
+
+    public int comprarjugador(String nom_equipo,String nombre_jug){
+        int aux;
+        Cursor c= db.rawQuery("SELECT "+CN_MONEY+" FROM "+ TABLE_NAME + " WHERE username = '"+nom_equipo+"'",null);
+        c.moveToFirst();
+        aux=c.getInt(0);
+        c = db.rawQuery("SELECT "+CN_VALUE+" FROM "+ TABLE_NAME_PLAYERS + " WHERE nombre = '"+nombre_jug+"'",null);
+        c.moveToFirst();
+        aux = aux - c.getInt(0);
+        aux=1;
+        if (aux>=0){ //Puede comprar el jugador
+            //Actualizar equipo y jugador
+            db.rawQuery("UPDATE "+TABLE_NAME+" SET dinero = '"+aux+"' WHERE nombre = '"+nom_equipo+"'",null);
+            db.rawQuery("UPDATE "+TABLE_NAME_PLAYERS+" SET equipo_usuario = '"+nom_equipo+"' WHERE nombre = '"+nombre_jug+"'",null);
+            return 1;
+        } else { //No puede comprar al jugador
+            return 0;
+        }
     }
 
+
+
+
+    //Devuelve una lista con los equipos
     public List<Team> getEquiposClasificacion(){
         Cursor c = db.rawQuery("SELECT * FROM "+ TABLE_NAME , null);
         List<Team> teams = new ArrayList<Team>();
@@ -199,11 +235,4 @@ public class DataBaseManager {
 
     }
 
-
-    public Cursor cargarClasificacion(){
-        String []col= new String[]{CN_ID,CN_USERNAME};
-        //return db.query(TABLE_NAME,col,null,null,null,null,null);
-        //db.rawQuery("SELECT * FROM "+ TABLE_NAME_PLAYERS + "WHERE "+CN_TEAM_USER +" ='"+user_team+"'", null);
-        return db.rawQuery("SELECT "+CN_TEAM_USER+" FROM "+ TABLE_NAME_PLAYERS , null);
-    }
 }

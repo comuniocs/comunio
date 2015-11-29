@@ -16,11 +16,15 @@ public class Login extends AppCompatActivity implements View.OnClickListener{
     Button bLogin;
     EditText etusername, etpassword;
     TextView registerLink;
+    DataBaseManager manager;
+
+    static int id_user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.lay_login);
+        manager = new DataBaseManager(this);
 
         etusername = (EditText)findViewById(R.id.etusername);
         etpassword = (EditText)findViewById(R.id.etpassword);
@@ -40,7 +44,8 @@ public class Login extends AppCompatActivity implements View.OnClickListener{
             String query = "SELECT * FROM users where username = '"+username+"' And password = '"+password+"'";
             DataBaseManager db = new DataBaseManager(this);
             if (db.Estaregistrado(query)){
-                Toast.makeText(this, "Cargando...", Toast.LENGTH_LONG).show();
+                id_user = manager.getID_user(username);
+                Toast.makeText(this, "Cargando...", Toast.LENGTH_SHORT).show();
 
                 startActivity(new Intent(this, Act_Principal.class));
             }else{
