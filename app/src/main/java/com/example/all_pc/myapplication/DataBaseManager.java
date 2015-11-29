@@ -197,17 +197,25 @@ public class DataBaseManager {
 
     public int comprarjugador(String nom_equipo,String nombre_jug){
         int aux;
-        Cursor c= db.rawQuery("SELECT "+CN_MONEY+" FROM "+ TABLE_NAME + " WHERE username = '"+nom_equipo+"'",null);
+        /*Cursor c= db.rawQuery("SELECT "+CN_MONEY+" FROM "+ TABLE_NAME + " WHERE username = '"+nom_equipo+"'",null);
         c.moveToFirst();
         aux=c.getInt(0);
         c = db.rawQuery("SELECT "+CN_VALUE+" FROM "+ TABLE_NAME_PLAYERS + " WHERE nombre = '"+nombre_jug+"'",null);
         c.moveToFirst();
-        aux = aux - c.getInt(0);
+        aux = aux - c.getInt(0);*/
         aux=1;
         if (aux>=0){ //Puede comprar el jugador
             //Actualizar equipo y jugador
-            db.rawQuery("UPDATE "+TABLE_NAME+" SET dinero = '"+aux+"' WHERE nombre = '"+nom_equipo+"'",null);
-            db.rawQuery("UPDATE "+TABLE_NAME_PLAYERS+" SET equipo_usuario = '"+nom_equipo+"' WHERE nombre = '"+nombre_jug+"'",null);
+            //db.rawQuery("UPDATE "+TABLE_NAME+" SET dinero = '"+aux+"' WHERE nombre = '"+nom_equipo+"'",null);
+           // db.rawQuery("UPDATE "+TABLE_NAME_PLAYERS+" SET equipo_usuario = '"+nom_equipo+"' WHERE nombre = '"+nombre_jug+"'",null);
+            ContentValues values = new ContentValues();
+            values.put(CN_MONEY, aux);
+            String[]aux2=new  String[]{nom_equipo};
+            db.update(TABLE_NAME, values, CN_NAME + " =?", aux2);
+            values = new ContentValues();
+            values.put(CN_TEAM_USER,nom_equipo);
+            String[]aux3=new  String[]{nombre_jug};
+            db.update(TABLE_NAME_PLAYERS,values, CN_NAME+" =?",aux3);
             return 1;
         } else { //No puede comprar al jugador
             return 0;
