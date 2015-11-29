@@ -25,7 +25,7 @@ public class FnJugadores extends Fragment {
 
         listView = (ListView) rootView.findViewById(R.id.listView);
 
-        List<Item> items = new ArrayList<Item>();
+       /* List<Item> items = new ArrayList<Item>();
         items.add(new Item(R.drawable.following, "Following",
                 "http://www.imdb.com/title/tt0154506/"));
         items.add(new Item(R.drawable.memento, "Memento",
@@ -42,7 +42,14 @@ public class FnJugadores extends Fragment {
                 "The Dark Knight Rises", "http://www.imdb.com/title/tt1345836/"));
 
         // Sets the data behind this ListView
-        listView.setAdapter(new ItemAdapter(getActivity(), items));
+        listView.setAdapter(new ItemAdapter(getActivity(), items));*/
+
+        List<Player> players = new ArrayList<Player>();
+
+        DataBaseManager manager = new DataBaseManager(getActivity());
+        players = manager.getJugadoresSinEquipo();
+
+        listView.setAdapter(new PlayerAdapter(getActivity(), players));
 
         return rootView;
     }
