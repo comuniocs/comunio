@@ -57,7 +57,7 @@ public class TeamAdapter extends BaseAdapter {
 
         Team item = this.items.get(position);
         tvTitle.setText(item.getEquipo_usuario());
-        //tvtitle2.setText(item.getPuntos());
+        tvtitle2.setText(String.valueOf(item.getPuntos()));
 
 
 

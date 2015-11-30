@@ -127,6 +127,13 @@ public class DataBaseManager {
         String team_user= c.getString(0);
         return team_user;
     }
+    public int getMoney(String user_team){
+        String[]aux3=new  String[]{user_team};
+        Cursor c = db.rawQuery("SELECT dinero FROM "+ TABLE_NAME + " WHERE "+CN_NAME +" =? ", aux3);
+        c.moveToFirst();
+        int i= c.getInt(0);
+        return i;
+    }
     public void CambiarState_titular_suplente (String jug1,String jug2){
         ContentValues values = new ContentValues();
         values = new ContentValues();
@@ -266,14 +273,21 @@ public class DataBaseManager {
     }
 
     public void venderjugador (String nom_equipo,String nombre_jug){
-        int aux;
-        /*Cursor c= db.rawQuery("SELECT "+CN_MONEY+" FROM "+ TABLE_NAME + " WHERE username = '"+nom_equipo+"'",null);
+        int aux,i;
+        Cursor c= db.rawQuery("SELECT "+CN_MONEY+" FROM "+ TABLE_NAME + " WHERE username = '"+nom_equipo+"'",null);
         c.moveToFirst();
         aux=c.getInt(0);
-        c = db.rawQuery("SELECT "+CN_VALUE+" FROM "+ TABLE_NAME_PLAYERS + " WHERE nombre = '"+nombre_jug+"'",null);
-        c.moveToFirst();
-        aux = aux + c.getInt(0);*/
-        aux=5;
+
+        /*String[]aux5=new  String[]{nombre_jug};
+        ContentValues values = new ContentValues();
+        values.put(CN_VALUE,1000);
+        db.update(TABLE_NAME_PLAYERS, values, CN_NAME + " = "+"'"+nombre_jug+"'", null);*/
+
+        //c = db.rawQuery("SELECT "+CN_VALUE+" FROM "+ TABLE_NAME_PLAYERS + " WHERE nombre = '"+nombre_jug+"'",null);
+        //c.moveToFirst();
+        //i=c.getInt(0);
+        i=50;
+        aux = aux + i;
         ContentValues values = new ContentValues();
         values.put(CN_MONEY, aux);
         String[]aux2=new  String[]{nom_equipo};
@@ -281,7 +295,7 @@ public class DataBaseManager {
         values = new ContentValues();
         values.putNull(CN_TEAM_USER);
         String[]aux4=new  String[]{nombre_jug};
-        db.update(TABLE_NAME_PLAYERS,values, CN_NAME+" =?",aux4);
+        db.update(TABLE_NAME_PLAYERS,values, CN_NAME+" =? ",aux4);
 
     }
 

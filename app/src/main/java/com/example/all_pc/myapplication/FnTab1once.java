@@ -25,6 +25,7 @@ public class FnTab1once extends Fragment {
     private ImageView p,d1,d2,d3,d4,m1,m2,m3,m4,dl1,dl2;
     private int TipoPosicion=0,Aux_Posicion=0;
     private Player p1,p2;
+    private final int FRAGMENT_GROUPID = 40;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -125,93 +126,112 @@ public class FnTab1once extends Fragment {
         if (v.getId() == R.id.imPor){
             players = manager.getPorteros(aux);
             for(Player pl:players){
-                menu.add(0,v.getId(),0,pl.getNombre());
+                menu.add(FRAGMENT_GROUPID,v.getId(),0,pl.getNombre());
             }
             this.TipoPosicion=0;
         } else if (v.getId() == R.id.imDef1 || v.getId() == R.id.imDef2 ||v.getId() == R.id.imDef3 || v.getId() == R.id.imDef4){
             players = manager.getDefensas(aux);
             for(Player pl:players){
-                menu.add(0,v.getId(),0,pl.getNombre());
+                menu.add(FRAGMENT_GROUPID,v.getId(),0,pl.getNombre());
             }
             this.TipoPosicion=1;
         } else if(v.getId() == R.id.imMed1 || v.getId() == R.id.imMed2 || v.getId() == R.id.imMed3 || v.getId() == R.id.imMed4){
             players = manager.getMedios(aux);
             for(Player pl:players){
-                menu.add(0,v.getId(),0,pl.getNombre());
+                menu.add(FRAGMENT_GROUPID,v.getId(),0,pl.getNombre());
             }
             this.TipoPosicion=2;
         } else if(v.getId() == R.id.imDel1 || v.getId() == R.id.imDel2){
             players = manager.getDelanteros(aux);
             for(Player pl:players){
-                menu.add(0,v.getId(),0,pl.getNombre());
+                menu.add(FRAGMENT_GROUPID,v.getId(),0,pl.getNombre());
             }
             this.TipoPosicion=3;
         }
 
     }
     public boolean onContextItemSelected(MenuItem item) {
-        AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
-        String aux = item.getTitle().toString();
-        int posicion = this.getPosition(aux);
-        //Toast.makeText(getActivity(), aux+" p:"+posicion, Toast.LENGTH_LONG).show();
-        //return true;
-        //Llamada a la base de datos para cambiar el valor de la columna Jugar a Si
-        switch (this.TipoPosicion) {
-            case 0:
-                p1= players.get(posicion); //Jugador suplente
-                if (Aux_Posicion<=portero.size()-1) {
-                    p2 = portero.get(Aux_Posicion); //Jugador titular
-                    manager.CambiarState_titular_suplente(p1.getNombre(),p2.getNombre());
-                    Toast.makeText(getActivity(), p2.getNombre()+" cambiado por "+p1.getNombre(), Toast.LENGTH_SHORT).show();
-                } else {
-                    manager.CambiarState_suplente(p1.getNombre());
-                    Toast.makeText(getActivity(),p1.getNombre()+" es titular.", Toast.LENGTH_SHORT).show();
-                }
-                return true;
-            case 1:
-                p1= players.get(posicion); //Jugador suplente
-                if (Aux_Posicion<=defensas.size()-1) {
-                    p2 = defensas.get(Aux_Posicion); //Jugador titular
-                    manager.CambiarState_titular_suplente(p1.getNombre(),p2.getNombre());
-                    Toast.makeText(getActivity(), p2.getNombre()+" cambiado por "+p1.getNombre(), Toast.LENGTH_SHORT).show();
+        if (item.getGroupId()==FRAGMENT_GROUPID) {
+            AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
+            String aux = item.getTitle().toString();
+            int posicion = this.getPosition(aux);
+            //Toast.makeText(getActivity(), aux+" p:"+posicion, Toast.LENGTH_LONG).show();
+            //return true;
+            //Llamada a la base de datos para cambiar el valor de la columna Jugar a Si
+            switch (this.TipoPosicion) {
+                case 0:
+                    p1 = players.get(posicion); //Jugador suplente
+                    if (Aux_Posicion <= portero.size() - 1) {
+                        p2 = portero.get(Aux_Posicion); //Jugador titular
+                        manager.CambiarState_titular_suplente(p1.getNombre(), p2.getNombre());
+                        Toast.makeText(getActivity(), p2.getNombre() + " cambiado por " + p1.getNombre(), Toast.LENGTH_SHORT).show();
+                    } else {
+                        manager.CambiarState_suplente(p1.getNombre());
+                        Toast.makeText(getActivity(), p1.getNombre() + " es titular.", Toast.LENGTH_SHORT).show();
+                    }
+                    return true;
+                case 1:
+                    p1 = players.get(posicion); //Jugador suplente
+                    if (Aux_Posicion <= defensas.size() - 1) {
+                        p2 = defensas.get(Aux_Posicion); //Jugador titular
+                        manager.CambiarState_titular_suplente(p1.getNombre(), p2.getNombre());
+                        Toast.makeText(getActivity(), p2.getNombre() + " cambiado por " + p1.getNombre(), Toast.LENGTH_SHORT).show();
 
-                } else {
-                    manager.CambiarState_suplente(p1.getNombre());
-                    Toast.makeText(getActivity(),p1.getNombre()+" es titular.", Toast.LENGTH_SHORT).show();
+                    } else {
+                        manager.CambiarState_suplente(p1.getNombre());
+                        Toast.makeText(getActivity(), p1.getNombre() + " es titular.", Toast.LENGTH_SHORT).show();
 
-                }
-                //Toast.makeText(getActivity(),p1.getNombre(), Toast.LENGTH_SHORT).show();
-                return true;
-            case 2:
-                p1= players.get(posicion); //Jugador suplente
-                if (Aux_Posicion<=medios.size()-1) {
-                    p2 = medios.get(Aux_Posicion); //Jugador titular
-                    manager.CambiarState_titular_suplente(p1.getNombre(),p2.getNombre());
-                    Toast.makeText(getActivity(), p2.getNombre()+" cambiado por "+p1.getNombre(), Toast.LENGTH_SHORT).show();
+                    }
+                    //Toast.makeText(getActivity(),p1.getNombre(), Toast.LENGTH_SHORT).show();
+                    return true;
+                case 2:
+                    p1 = players.get(posicion); //Jugador suplente
+                    if (Aux_Posicion <= medios.size() - 1) {
+                        p2 = medios.get(Aux_Posicion); //Jugador titular
+                        manager.CambiarState_titular_suplente(p1.getNombre(), p2.getNombre());
+                        Toast.makeText(getActivity(), p2.getNombre() + " cambiado por " + p1.getNombre(), Toast.LENGTH_SHORT).show();
 
-                } else {
-                    manager.CambiarState_suplente(p1.getNombre());
-                    Toast.makeText(getActivity(),p1.getNombre()+" es titular.", Toast.LENGTH_SHORT).show();
+                    } else {
+                        manager.CambiarState_suplente(p1.getNombre());
+                        Toast.makeText(getActivity(), p1.getNombre() + " es titular.", Toast.LENGTH_SHORT).show();
 
-                }
+                    }
 
-                return true;
-            case 3:
-                p1= players.get(posicion); //Jugador suplente
-                if (Aux_Posicion<=delanteros.size()-1) {
-                    p2 = delanteros.get(Aux_Posicion); //Jugador titular
-                    manager.CambiarState_titular_suplente(p1.getNombre(),p2.getNombre());
-                    Toast.makeText(getActivity(), p2.getNombre()+" cambiado por "+p1.getNombre(), Toast.LENGTH_SHORT).show();
-                } else {
-                    manager.CambiarState_suplente(p1.getNombre());
-                    Toast.makeText(getActivity(),p1.getNombre()+" es titular.", Toast.LENGTH_SHORT).show();
-                }
+                    return true;
+                case 3:
+                    p1 = players.get(posicion); //Jugador suplente
+                    if (Aux_Posicion <= delanteros.size() - 1) {
+                        p2 = delanteros.get(Aux_Posicion); //Jugador titular
+                        manager.CambiarState_titular_suplente(p1.getNombre(), p2.getNombre());
+                        Toast.makeText(getActivity(), p2.getNombre() + " cambiado por " + p1.getNombre(), Toast.LENGTH_SHORT).show();
+                    } else {
+                        manager.CambiarState_suplente(p1.getNombre());
+                        Toast.makeText(getActivity(), p1.getNombre() + " es titular.", Toast.LENGTH_SHORT).show();
+                    }
 
-                return true;
-            default:
-                return super.onContextItemSelected(item);
+                    return true;
+                default:
+                    return super.onContextItemSelected(item);
+            }
+        } else {
+            AdapterView.AdapterContextMenuInfo info =
+                    (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
+            String aux2= manager.getTeam_user(Login.id_user);
+            players = manager.getJugadoresDeEquipo(aux2);
+            switch (item.getItemId()) {
+                case R.id.etq1Informacion:
+                    players.get(info.position);
+                    Toast.makeText(getActivity(), "Informacion", Toast.LENGTH_LONG).show();
+                    return true;
+                case R.id.etq2Venta:
+                    String aux= manager.getTeam_user(Login.id_user);
+                    manager.venderjugador(manager.getTeam_user(Login.id_user),aux);
+                    Toast.makeText(getActivity(), players.get(info.position).getNombre()+" ha sido vendido.", Toast.LENGTH_SHORT).show();
+                    return true;
+                default:
+                    return super.onContextItemSelected(item);
+            }
         }
-
     }
     
     private int getPosition(String nombre){

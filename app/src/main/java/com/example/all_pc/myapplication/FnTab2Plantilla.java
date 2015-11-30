@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.List;
@@ -22,6 +23,8 @@ public class FnTab2Plantilla extends Fragment implements View.OnClickListener {
     private DataBaseManager manager;
     private ListView listView;
     private List<Player> players;
+    private TextView Tdinero;
+    private final int FRAGMENT_GROUPID = 30;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -29,9 +32,11 @@ public class FnTab2Plantilla extends Fragment implements View.OnClickListener {
 
         View rootView = inflater.inflate(R.layout.lay_tab2plantilla, container, false);
         manager = new DataBaseManager(getActivity());
-
+        Tdinero = (TextView) rootView.findViewById(R.id.textDinero);
         listView = (ListView) rootView.findViewById(R.id.listPlantilla);
         String aux= manager.getTeam_user(Login.id_user);
+        int i= manager.getMoney(aux);
+        Tdinero.setText(String.valueOf(i));
         //final DataBaseManager manager = new DataBaseManager(getActivity());
         players = manager.getJugadoresDeEquipo(aux);
         listView.setAdapter(new PlayerAdapter(getActivity(),players));
