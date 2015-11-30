@@ -1,9 +1,11 @@
 package com.example.all_pc.myapplication;
 
+import java.io.Serializable;
+
 /**
  * Created by Enrique on 29/11/2015.
  */
-public class Player {
+public class Player implements Serializable {
 
     private int id;
     private String nombre;

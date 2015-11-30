@@ -1,6 +1,7 @@
 package com.example.all_pc.myapplication;
 
 import android.app.Fragment;
+import android.app.FragmentManager;
 import android.os.Bundle;
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
@@ -220,8 +221,16 @@ public class FnTab1once extends Fragment {
             players = manager.getJugadoresDeEquipo(aux2);
             switch (item.getItemId()) {
                 case R.id.etq1Informacion:
-                    players.get(info.position);
+                    //players.get(info.position);
+                    Fragment fragment = new FnInfoJugador();
+                    Bundle bundle = new Bundle();
+                    bundle.putInt("Player", info.position);
+                    fragment.setArguments(bundle);
                     Toast.makeText(getActivity(), "Informacion", Toast.LENGTH_LONG).show();
+                    FragmentManager fragmentManager = getFragmentManager();
+                    fragmentManager.beginTransaction().replace(R.id.container, fragment).commit();
+
+
                     return true;
                 case R.id.etq2Venta:
                     String aux= manager.getTeam_user(Login.id_user);
