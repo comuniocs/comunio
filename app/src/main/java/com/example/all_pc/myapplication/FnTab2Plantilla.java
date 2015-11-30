@@ -53,7 +53,7 @@ public class FnTab2Plantilla extends Fragment implements View.OnClickListener {
         list.setAdapter(adapter);
         //list.addHeaderView(titulo);*/
 
-        //registerForContextMenu(list);
+        registerForContextMenu(listView);
 
         return rootView;
     }
@@ -69,7 +69,7 @@ public class FnTab2Plantilla extends Fragment implements View.OnClickListener {
                     (AdapterView.AdapterContextMenuInfo)menuInfo;
 
             menu.setHeaderTitle(
-                    listView.getAdapter().getItem(info.position).toString());
+                    players.get(info.position).getNombre());
 
             inflater.inflate(R.menu.menu_tab2plantilla, menu);
 
@@ -83,13 +83,12 @@ public class FnTab2Plantilla extends Fragment implements View.OnClickListener {
 
         switch (item.getItemId()) {
             case R.id.etq1Informacion:
-                Toast.makeText(getActivity(), "Jugador = ", Toast.LENGTH_LONG).show();
+                Toast.makeText(getActivity(), "Informacion", Toast.LENGTH_LONG).show();
                 return true;
-            case R.id.etq2Colocar:
-                Toast.makeText(getActivity(), "Colocar", Toast.LENGTH_LONG).show();
-                return true;
-            case R.id.etq3Venta:
-                Toast.makeText(getActivity(), " puesto en Venta", Toast.LENGTH_LONG).show();
+            case R.id.etq2Venta:
+                String aux= manager.getTeam_user(Login.id_user);
+                manager.venderjugador(manager.getTeam_user(Login.id_user),aux);
+                Toast.makeText(getActivity(), players.get(info.position).getNombre()+" ha sido vendido.", Toast.LENGTH_SHORT).show();
                 return true;
             default:
                 return super.onContextItemSelected(item);

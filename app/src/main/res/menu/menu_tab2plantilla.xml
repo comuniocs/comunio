@@ -4,9 +4,7 @@
 
     <item android:id="@+id/etq1Informacion"
         android:title="Información"></item>
-    <item android:id="@+id/etq2Colocar"
-        android:title="Colocar"></item>
-    <item android:id="@+id/etq3Venta"
+    <item android:id="@+id/etq2Venta"
         android:title="Vender"></item>
 
 </menu>

@@ -165,35 +165,25 @@ public class DataBaseManager {
         }
     }
 
-    /*public int comprarjugador (String[] jug,String[] equipo){
-        String[] col=new String[]{"valor"};
-        Cursor c = db.query(TABLE_NAME, col, "equipo_user=?", equipo, null, null, null);
-        double aux = c.getDouble(0);
-        c = db.query(TABLE_NAME_PLAYERS, col, "nombre=?", jug, null, null, null);
-        aux = aux - c.getDouble(0);
-        if (aux>=0){ //Compra el jugador
-            // FALTA ACTUALIZAR JUGADOR Y RESTAR DINERO
-            return 1;
-        } else { // No puede comprar el jugador
-            return 0;
-        }
-    }*/
+    public void venderjugador (String nom_equipo,String nombre_jug){
+        int aux;
+        /*Cursor c= db.rawQuery("SELECT "+CN_MONEY+" FROM "+ TABLE_NAME + " WHERE username = '"+nom_equipo+"'",null);
+        c.moveToFirst();
+        aux=c.getInt(0);
+        c = db.rawQuery("SELECT "+CN_VALUE+" FROM "+ TABLE_NAME_PLAYERS + " WHERE nombre = '"+nombre_jug+"'",null);
+        c.moveToFirst();
+        aux = aux + c.getInt(0);*/
+        aux=5;
+        ContentValues values = new ContentValues();
+        values.put(CN_MONEY, aux);
+        String[]aux2=new  String[]{nom_equipo};
+        db.update(TABLE_NAME, values, CN_NAME + " =?", aux2);
+        values = new ContentValues();
+        values.putNull(CN_TEAM_USER);
+        String[]aux4=new  String[]{nombre_jug};
+        db.update(TABLE_NAME_PLAYERS,values, CN_NAME+" =?",aux4);
 
-    /*public void venderjugador(String[] jug, String[] equipo){
-        double aux=0;
-        String[] col=new String[]{"valor"};
-        Cursor c = db.query(TABLE_NAME_PLAYERS, col, "nombre=?", jug, null, null, null);
-        if(c.moveToFirst()) {
-            aux = c.getDouble(0);
-        }
-        c = db.query(TABLE_NAME,col,"equipo_user=?",equipo,null,null,null);
-        if(c.moveToFirst()) {
-            aux = aux + c.getDouble(0);
-        }
-        db.execSQL("UPDATE players SET equipo_user='NULL' WHERE nombre=? ",jug);
-        // FALTA SUMAR DINERO AL EQUIPO
-
-    }*/
+    }
 
     public int comprarjugador(String nom_equipo,String nombre_jug){
         int aux;
@@ -213,7 +203,7 @@ public class DataBaseManager {
             String[]aux2=new  String[]{nom_equipo};
             db.update(TABLE_NAME, values, CN_NAME + " =?", aux2);
             values = new ContentValues();
-            values.put(CN_TEAM_USER,nom_equipo);
+            values.put(CN_TEAM_USER, nom_equipo);
             String[]aux3=new  String[]{nombre_jug};
             db.update(TABLE_NAME_PLAYERS,values, CN_NAME+" =?",aux3);
             return 1;
