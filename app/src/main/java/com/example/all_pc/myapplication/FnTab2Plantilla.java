@@ -66,7 +66,10 @@ public class FnTab2Plantilla extends Fragment implements View.OnClickListener {
 
         switch (item.getItemId()) {
             case R.id.etq1Informacion:
-                players.get(info.position);
+                Fragment fragment = new FnInfoJugador();
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("Player", players.get(info.position));
+                fragment.setArguments(bundle);
                 Toast.makeText(getActivity(), "Informacion", Toast.LENGTH_LONG).show();
                 return true;
             case R.id.etq2Venta:

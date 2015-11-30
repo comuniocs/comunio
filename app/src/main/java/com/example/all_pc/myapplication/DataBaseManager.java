@@ -36,8 +36,8 @@ public class DataBaseManager {
             + CN_NAME + " text not null,"
             + CN_USERNAME + " text not null unique,"
             + CN_PASSWORD + " text not null,"
-            + CN_POINTS + " integer," // Puntos del equipo
-            + CN_MONEY + " integer );"; //Dinero del equipo
+            + CN_POINTS + " integer default 0," // Puntos del equipo
+            + CN_MONEY + " integer default 100000);"; //Dinero del equipo
 
     public  static final String CREATE_TABLE_PLAYERS = "create table " +TABLE_NAME_PLAYERS+ " ("
             + CN_ID + " integer primary key autoincrement,"

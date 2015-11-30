@@ -6,13 +6,14 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 /**
  * Created by xEV on 15/11/2015.
  */
-public class FnMerc_Fichajes extends Fragment implements View.OnClickListener {
+public class FnMerc_Fichajes extends Fragment {
     ListView list;
     ArrayAdapter<String> adapter;
 
@@ -22,17 +23,20 @@ public class FnMerc_Fichajes extends Fragment implements View.OnClickListener {
 
         View rootView = inflater.inflate(R.layout.lay_merc_fichajes, container, false);
 
+        WebView myWebView = (WebView) rootView.findViewById(R.id.webView);
+        myWebView.loadUrl("https://amatellanes.wordpress.com/");
+
         //titulo.setText("Mis Jugadores");
 
-        list = (ListView) rootView.findViewById(R.id.listjug_propiosventa);
+        /*list = (ListView) rootView.findViewById(R.id.listjug_propiosventa);
         adapter = new ArrayAdapter<String>(this.getActivity() ,android.R.layout.simple_list_item_1, android.R.id.text1, Act_Principal.getJug_venta());
-        list.setAdapter(adapter);
+        list.setAdapter(adapter);*/
         //list.addHeaderView(titulo);
 
         return rootView;
     }
 
-
+/*
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
@@ -54,8 +58,8 @@ public class FnMerc_Fichajes extends Fragment implements View.OnClickListener {
         switch (v.getId()){
             /*case R.id.bLogout:
                 startActivity(new Intent(this, Login.class));
-                break;*/}
+                break;*//*}
 
 
-    }
+    }*/
 }
