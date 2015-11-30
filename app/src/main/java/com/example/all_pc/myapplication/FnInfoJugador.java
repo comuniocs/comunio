@@ -46,7 +46,7 @@ public class FnInfoJugador extends Fragment {
         nomjugtext.setText(this.player.getNombre());
         textPosicion.setText(this.player.getPosicion());
         textEquipo.setText(this.player.getEquipo());
-        textValor.setText(this.player.getPrecio());
+        textValor.setText(String.valueOf(this.player.getPrecio()));
         Picasso.with(getActivity()).load(this.player.getImagen_jugador()).into(imgJugador);
 
         return rootView;

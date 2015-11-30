@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="?android:attr/listPreferredItemHeight" >
+    android:layout_height="?android:attr/listPreferredItemHeight"
+    android:paddingRight="20dp">
 
     <ImageView
         android:id="@+id/ivItem"
@@ -20,5 +21,37 @@
         android:singleLine="true"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="text" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Small Text"
+        android:id="@+id/descripcion"
+        android:layout_centerVertical="true"
+        android:layout_toRightOf="@+id/ivItem"
+        android:layout_toEndOf="@+id/ivItem" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Precio:"
+        android:id="@+id/textView9"
+        android:layout_alignTop="@+id/descripcion"
+        android:layout_alignRight="@+id/tvTitle"
+        android:layout_alignEnd="@+id/tvTitle"
+        android:layout_marginRight="60dp"
+        android:layout_marginEnd="60dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="1000"
+        android:id="@+id/textView10"
+        android:layout_alignTop="@+id/textView9"
+        android:layout_alignRight="@+id/tvTitle"
+        android:layout_alignEnd="@+id/tvTitle" />
 
 </RelativeLayout>

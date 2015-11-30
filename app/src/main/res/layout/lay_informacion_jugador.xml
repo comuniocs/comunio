@@ -3,7 +3,10 @@
     android:layout_width="match_parent" android:layout_height="match_parent"
     android:background="#2d7f2d"
     android:weightSum="1"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:paddingLeft="80dp"
+    android:minWidth="500dp"
+    android:nestedScrollingEnabled="false">
 
     <LinearLayout
         android:orientation="horizontal"
@@ -76,7 +79,8 @@
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
             android:layout_marginTop="20dp"
-            android:layout_marginLeft="10dp" />
+            android:layout_marginLeft="10dp"
+            android:layout_marginBottom="40dp" />
 
         <TextView
             android:layout_width="wrap_content"

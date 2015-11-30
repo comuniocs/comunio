@@ -228,7 +228,7 @@ public class FnTab1once extends Fragment {
                     fragment.setArguments(bundle);
                     Toast.makeText(getActivity(), "Informacion", Toast.LENGTH_LONG).show();
                     FragmentManager fragmentManager = getFragmentManager();
-                    fragmentManager.beginTransaction().replace(R.id.container, fragment).commit();
+                    fragmentManager.beginTransaction().replace(R.id.fragment_container, fragment).commit();
 
 
                     return true;

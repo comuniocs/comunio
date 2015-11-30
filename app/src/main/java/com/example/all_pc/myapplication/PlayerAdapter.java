@@ -55,9 +55,11 @@ public class PlayerAdapter extends BaseAdapter {
         // Set data into the view.
         ImageView ivItem = (ImageView) rowView.findViewById(R.id.ivItem);
         TextView tvTitle = (TextView) rowView.findViewById(R.id.tvTitle);
+        TextView descripcion = (TextView) rowView.findViewById(R.id.descripcion);
 
         Player item = this.items.get(position);
         tvTitle.setText(item.getNombre());
+        descripcion.setText(item.getEquipo()+ " - "+item.getPosicion() );
         Picasso.with(this.context).load(item.getImagen_jugador()).into(ivItem);
 
         return rowView;

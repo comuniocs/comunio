@@ -7,7 +7,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import org.w3c.dom.Text;
 
 import java.util.List;
 
@@ -19,6 +22,7 @@ public class FnJugadores extends Fragment implements AdapterView.OnItemClickList
     private ListView listView;
     private DataBaseManager manager;
     private List<Player> players;
+    private TextView Tdinero;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -28,9 +32,13 @@ public class FnJugadores extends Fragment implements AdapterView.OnItemClickList
         manager = new DataBaseManager(getActivity());
 
         listView = (ListView) rootView.findViewById(R.id.listView);
+        Tdinero = (TextView) rootView.findViewById(R.id.textDinero);
 
         final DataBaseManager manager = new DataBaseManager(getActivity());
         players = manager.getJugadoresSinEquipo();
+        String aux= manager.getTeam_user(Login.id_user);
+        int i= manager.getMoney(aux);
+        Tdinero.setText(String.valueOf(i));
 
         listView.setAdapter(new PlayerAdapter(getActivity(), players));
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
