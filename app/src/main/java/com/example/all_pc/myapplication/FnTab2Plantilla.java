@@ -1,6 +1,8 @@
 package com.example.all_pc.myapplication;
 
 import android.app.Fragment;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
@@ -64,13 +66,18 @@ public class FnTab2Plantilla extends Fragment implements View.OnClickListener {
         AdapterView.AdapterContextMenuInfo info =
                 (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
 
+        System.out.println(item.getItemId());
+
         switch (item.getItemId()) {
             case R.id.etq1Informacion:
-                Fragment fragment = new FnInfoJugador();
-                Bundle bundle = new Bundle();
-                bundle.putSerializable("Player", players.get(info.position));
-                fragment.setArguments(bundle);
-                Toast.makeText(getActivity(), "Informacion", Toast.LENGTH_LONG).show();
+               // Act_Principal actividad = new Act_Principal();
+               // actividad.displayInfoJugador(players.get(info.position));
+
+                //Fragment fragment = new FnInfoJugador();
+
+                //FragmentManager fragmentManager = getFragmentManager();
+                //fragmentManager.beginTransaction().replace(R.id.frame_container, fragment).commit();
+
                 return true;
             case R.id.etq2Venta:
                 String aux= manager.getTeam_user(Login.id_user);

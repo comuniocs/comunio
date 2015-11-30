@@ -31,8 +31,11 @@ public class FnInfoJugador extends Fragment {
 
         View rootView = inflater.inflate(R.layout.lay_informacion_jugador, container, false);
 
+        System.out.println("HOLA");
         Bundle bundle = this.getArguments();
+        System.out.println("HOLA");
         this.player = (Player) bundle.getSerializable("Player");
+        System.out.println("HOLA");
 
         // Set data into the view.
         ImageView imgJugador = (ImageView) rootView.findViewById(R.id.imgJugador);

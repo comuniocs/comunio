@@ -14,6 +14,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -206,6 +207,17 @@ public class Act_Principal extends AppCompatActivity {
             // error in creating fragment
             Log.e("Ramiro", "MainActivity - Error cuando se creo el fragment");
         }
+    }
+
+    public void displayInfoJugador(Player jugador){
+        Fragment fragment = new FnInfoJugador();
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("Player", jugador);
+        fragment.setArguments(bundle);
+        Toast.makeText(this, "Informacion", Toast.LENGTH_LONG).show();
+
+        FragmentManager fragmentManager = getFragmentManager();
+        fragmentManager.beginTransaction().replace(R.id.frame_container, fragment).commit();
     }
 
     @Override
