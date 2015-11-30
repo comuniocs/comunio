@@ -150,26 +150,22 @@ public class DataBaseManager {
         values.put(CN_STATE, "si");
         String[]aux2=new  String[]{jug1};
         db.update(TABLE_NAME_PLAYERS, values, CN_NAME + " =?", aux2);
-
     }
 
     public  List<Player> getJugadoresTitulares(String user_team,String Posicion){
         List<Player> players = new ArrayList<>();
         String[]aux= new String[]{user_team,Posicion,"si"};
-        //Cursor c = db.rawQuery("SELECT * FROM "+ TABLE_NAME_PLAYERS + " WHERE "+CN_TEAM_USER +" =? And "+CN_POSITION+" =? And "+CN_STATE+" =?", aux);
         Cursor c = db.rawQuery("SELECT * FROM "+ TABLE_NAME_PLAYERS + " WHERE "+CN_TEAM_USER +" =? And "+CN_POSITION+" =? And "+CN_STATE+" =?", aux);
         if (c.moveToFirst()) {
             do{
                 Player jugador = new Player(c.getInt(0), c.getString(1), c.getString(2), c.getString(3), c.getString(4), c.getString(5), c.getInt(6), c.getString(7));
                 players.add(jugador);
-
             }while(c.moveToNext());
             return players;
         }else{
             return players;
 
         }
-
     }
 
      public List<Player>getPorteros(String user_team){
@@ -278,11 +274,6 @@ public class DataBaseManager {
         c.moveToFirst();
         aux=c.getInt(0);
 
-        /*String[]aux5=new  String[]{nombre_jug};
-        ContentValues values = new ContentValues();
-        values.put(CN_VALUE,1000);
-        db.update(TABLE_NAME_PLAYERS, values, CN_NAME + " = "+"'"+nombre_jug+"'", null);*/
-
         //c = db.rawQuery("SELECT "+CN_VALUE+" FROM "+ TABLE_NAME_PLAYERS + " WHERE nombre = '"+nombre_jug+"'",null);
         //c.moveToFirst();
         //i=c.getInt(0);
@@ -294,24 +285,23 @@ public class DataBaseManager {
         db.update(TABLE_NAME, values, CN_NAME + " =?", aux2);
         values = new ContentValues();
         values.putNull(CN_TEAM_USER);
-        String[]aux4=new  String[]{nombre_jug};
-        db.update(TABLE_NAME_PLAYERS,values, CN_NAME+" =? ",aux4);
+        String[]aux3=new  String[]{nombre_jug};
+        db.update(TABLE_NAME_PLAYERS,values, CN_NAME+" =?",aux3);
 
     }
 
     public int comprarjugador(String nom_equipo,String nombre_jug){
         int aux;
-        /*Cursor c= db.rawQuery("SELECT "+CN_MONEY+" FROM "+ TABLE_NAME + " WHERE username = '"+nom_equipo+"'",null);
+        Cursor c= db.rawQuery("SELECT "+CN_MONEY+" FROM "+ TABLE_NAME + " WHERE username = '"+nom_equipo+"'",null);
         c.moveToFirst();
         aux=c.getInt(0);
-        c = db.rawQuery("SELECT "+CN_VALUE+" FROM "+ TABLE_NAME_PLAYERS + " WHERE nombre = '"+nombre_jug+"'",null);
-        c.moveToFirst();
-        aux = aux - c.getInt(0);*/
-        aux=1;
+        //c = db.rawQuery("SELECT "+CN_VALUE+" FROM "+ TABLE_NAME_PLAYERS + " WHERE nombre = '"+nombre_jug+"'",null);
+        //c.moveToFirst();
+        int i= 1000;
+        //aux = aux - c.getInt(0);
+        aux = aux - i;
         if (aux>=0){ //Puede comprar el jugador
             //Actualizar equipo y jugador
-            //db.rawQuery("UPDATE "+TABLE_NAME+" SET dinero = '"+aux+"' WHERE nombre = '"+nom_equipo+"'",null);
-           // db.rawQuery("UPDATE "+TABLE_NAME_PLAYERS+" SET equipo_usuario = '"+nom_equipo+"' WHERE nombre = '"+nombre_jug+"'",null);
             ContentValues values = new ContentValues();
             values.put(CN_MONEY, aux);
             String[]aux2=new  String[]{nom_equipo};
@@ -325,9 +315,6 @@ public class DataBaseManager {
             return 0;
         }
     }
-
-
-
 
     //Devuelve una lista con los equipos
     public List<Team> getEquiposClasificacion(){
