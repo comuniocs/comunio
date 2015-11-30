@@ -23,7 +23,8 @@ public class FnTab1once extends Fragment {
     private DataBaseManager manager;
     private  List<Player> players,portero,defensas,medios,delanteros;
     private ImageView p,d1,d2,d3,d4,m1,m2,m3,m4,dl1,dl2;
-    private int Cam_Posicion=1;
+    private int TipoPosicion=0,Aux_Posicion=0;
+    private Player p1,p2;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -108,30 +109,43 @@ public class FnTab1once extends Fragment {
     {
         super.onCreateContextMenu(menu, v, menuInfo);
         String aux= manager.getTeam_user(Login.id_user);
+        switch (v.getId()){
+            case R.id.imPor: Aux_Posicion=0; break;
+            case R.id.imDef1: Aux_Posicion=0; break;
+            case R.id.imDef2: Aux_Posicion=1; break;
+            case R.id.imDef3: Aux_Posicion=2; break;
+            case R.id.imDef4: Aux_Posicion=3; break;
+            case R.id.imMed1: Aux_Posicion=0; break;
+            case R.id.imMed2: Aux_Posicion=1; break;
+            case R.id.imMed3: Aux_Posicion=2; break;
+            case R.id.imMed4: Aux_Posicion=3; break;
+            case R.id.imDel1: Aux_Posicion=0; break;
+            case R.id.imDel2: Aux_Posicion=1; break;
+        }
         if (v.getId() == R.id.imPor){
             players = manager.getPorteros(aux);
             for(Player pl:players){
                 menu.add(0,v.getId(),0,pl.getNombre());
             }
-            this.Cam_Posicion=0;
+            this.TipoPosicion=0;
         } else if (v.getId() == R.id.imDef1 || v.getId() == R.id.imDef2 ||v.getId() == R.id.imDef3 || v.getId() == R.id.imDef4){
             players = manager.getDefensas(aux);
             for(Player pl:players){
                 menu.add(0,v.getId(),0,pl.getNombre());
             }
-            this.Cam_Posicion=1;
+            this.TipoPosicion=1;
         } else if(v.getId() == R.id.imMed1 || v.getId() == R.id.imMed2 || v.getId() == R.id.imMed3 || v.getId() == R.id.imMed4){
             players = manager.getMedios(aux);
             for(Player pl:players){
                 menu.add(0,v.getId(),0,pl.getNombre());
             }
-            this.Cam_Posicion=2;
+            this.TipoPosicion=2;
         } else if(v.getId() == R.id.imDel1 || v.getId() == R.id.imDel2){
             players = manager.getDelanteros(aux);
             for(Player pl:players){
                 menu.add(0,v.getId(),0,pl.getNombre());
             }
-            this.Cam_Posicion=3;
+            this.TipoPosicion=3;
         }
 
     }
@@ -142,22 +156,36 @@ public class FnTab1once extends Fragment {
         //Toast.makeText(getActivity(), aux+" p:"+posicion, Toast.LENGTH_LONG).show();
         //return true;
         //Llamada a la base de datos para cambiar el valor de la columna Jugar a Si
-        switch (this.Cam_Posicion) {
+        switch (this.TipoPosicion) {
             case 0:
-                Toast.makeText(getActivity(), "Etq1", Toast.LENGTH_LONG).show();
+                p1= players.get(Aux_Posicion); //Jugador suplente
+                p2= portero.get(posicion); //Jugador titular
+                Toast.makeText(getActivity(), p2.getNombre()+" cambiado por "+p1.getNombre(), Toast.LENGTH_LONG).show();
                 return true;
             case 1:
-                Toast.makeText(getActivity(), "Etq2", Toast.LENGTH_LONG).show();
+                p1= players.get(Aux_Posicion); //Jugador suplente
+                if (posicion<=defensas.size()-1) {
+                    p2 = defensas.get(posicion); //Jugador titular
+                    manager.CambiarState_titular_suplente(p1.getNombre(),p2.getNombre());
+                } else {
+                    manager.CambiarState_suplente(p1.getNombre());
+                }
+                
                 return true;
             case 2:
-                Toast.makeText(getActivity(), "Etq1", Toast.LENGTH_LONG).show();
+                p1= players.get(Aux_Posicion); //Jugador suplente
+                p2= medios.get(posicion); //Jugador titular
+                Toast.makeText(getActivity(), p2.getNombre()+" cambiado por "+p1.getNombre(), Toast.LENGTH_LONG).show();
                 return true;
             case 3:
-                Toast.makeText(getActivity(), "Etq1", Toast.LENGTH_LONG).show();
+                p1= players.get(Aux_Posicion); //Jugador suplente
+                p2= delanteros.get(posicion); //Jugador titular
+                Toast.makeText(getActivity(), p2.getNombre()+" cambiado por "+p1.getNombre(), Toast.LENGTH_LONG).show();
                 return true;
             default:
                 return super.onContextItemSelected(item);
         }
+
     }
     
     private int getPosition(String nombre){

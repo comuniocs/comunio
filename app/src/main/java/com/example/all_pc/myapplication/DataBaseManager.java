@@ -127,14 +127,20 @@ public class DataBaseManager {
     }
     public void CambiarState_titular_suplente (String jug1,String jug2){
         ContentValues values = new ContentValues();
-        values.put(CN_STATE, "si");
-        String[]aux2=new  String[]{jug1};
-        db.update(TABLE_NAME_PLAYERS, values, CN_NAME + " =?", aux2);
         values = new ContentValues();
         values.put(CN_STATE, "no");
         String[]aux3=new  String[]{jug2};
         db.update(TABLE_NAME_PLAYERS,values, CN_NAME+" =?",aux3);
+        values.put(CN_STATE, "si");
+        String[]aux2=new  String[]{jug1};
+        db.update(TABLE_NAME_PLAYERS, values, CN_NAME + " =?", aux2);
+    }
 
+    public  void CambiarState_suplente (String jug1){
+        ContentValues values = new ContentValues();
+        values.put(CN_STATE, "si");
+        String[]aux2=new  String[]{jug1};
+        db.update(TABLE_NAME_PLAYERS, values, CN_NAME + " =?", aux2);
 
     }
 
