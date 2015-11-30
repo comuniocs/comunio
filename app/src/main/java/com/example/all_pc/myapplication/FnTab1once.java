@@ -23,6 +23,7 @@ public class FnTab1once extends Fragment {
     private DataBaseManager manager;
     private  List<Player> players,portero,defensas,medios,delanteros;
     private ImageView p,d1,d2,d3,d4,m1,m2,m3,m4,dl1,dl2;
+    private int Cam_Posicion=1;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -106,51 +107,69 @@ public class FnTab1once extends Fragment {
                                     ContextMenu.ContextMenuInfo menuInfo)
     {
         super.onCreateContextMenu(menu, v, menuInfo);
-        List<Player> players;
         String aux= manager.getTeam_user(Login.id_user);
         if (v.getId() == R.id.imPor){
             players = manager.getPorteros(aux);
             for(Player pl:players){
                 menu.add(0,v.getId(),0,pl.getNombre());
             }
+            this.Cam_Posicion=0;
         } else if (v.getId() == R.id.imDef1 || v.getId() == R.id.imDef2 ||v.getId() == R.id.imDef3 || v.getId() == R.id.imDef4){
             players = manager.getDefensas(aux);
             for(Player pl:players){
                 menu.add(0,v.getId(),0,pl.getNombre());
             }
+            this.Cam_Posicion=1;
         } else if(v.getId() == R.id.imMed1 || v.getId() == R.id.imMed2 || v.getId() == R.id.imMed3 || v.getId() == R.id.imMed4){
             players = manager.getMedios(aux);
             for(Player pl:players){
                 menu.add(0,v.getId(),0,pl.getNombre());
             }
+            this.Cam_Posicion=2;
         } else if(v.getId() == R.id.imDel1 || v.getId() == R.id.imDel2){
             players = manager.getDelanteros(aux);
             for(Player pl:players){
                 menu.add(0,v.getId(),0,pl.getNombre());
             }
+            this.Cam_Posicion=3;
         }
 
-        //menu.add(0,v.getId(),0,"");
     }
     public boolean onContextItemSelected(MenuItem item) {
         AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
-        players.get(info.position);
-
+        String aux = item.getTitle().toString();
+        int posicion = this.getPosition(aux);
+        //Toast.makeText(getActivity(), aux+" p:"+posicion, Toast.LENGTH_LONG).show();
+        //return true;
         //Llamada a la base de datos para cambiar el valor de la columna Jugar a Si
-        switch (item.getItemId()) {
-            case R.id.etqFormacion1:
-
+        switch (this.Cam_Posicion) {
+            case 0:
                 Toast.makeText(getActivity(), "Etq1", Toast.LENGTH_LONG).show();
                 return true;
-            case R.id.etqFormacion2:
+            case 1:
                 Toast.makeText(getActivity(), "Etq2", Toast.LENGTH_LONG).show();
                 return true;
-            case R.id.etqFormacion3:
+            case 2:
+                Toast.makeText(getActivity(), "Etq1", Toast.LENGTH_LONG).show();
+                return true;
+            case 3:
                 Toast.makeText(getActivity(), "Etq1", Toast.LENGTH_LONG).show();
                 return true;
             default:
                 return super.onContextItemSelected(item);
         }
+    }
+    
+    private int getPosition(String nombre){
+        int i=0;
+        int aux=0;
+        for (Player pl:players){
+            if(pl.getNombre().equals(nombre)){
+                aux=i;
+            }
+            i++;
+        }
+        return aux;
     }
 }
 
