@@ -158,29 +158,55 @@ public class FnTab1once extends Fragment {
         //Llamada a la base de datos para cambiar el valor de la columna Jugar a Si
         switch (this.TipoPosicion) {
             case 0:
-                p1= players.get(Aux_Posicion); //Jugador suplente
-                p2= portero.get(posicion); //Jugador titular
-                Toast.makeText(getActivity(), p2.getNombre()+" cambiado por "+p1.getNombre(), Toast.LENGTH_LONG).show();
-                return true;
-            case 1:
-                p1= players.get(Aux_Posicion); //Jugador suplente
-                if (posicion<=defensas.size()-1) {
-                    p2 = defensas.get(posicion); //Jugador titular
+                p1= players.get(posicion); //Jugador suplente
+                if (Aux_Posicion<=portero.size()-1) {
+                    p2 = portero.get(Aux_Posicion); //Jugador titular
                     manager.CambiarState_titular_suplente(p1.getNombre(),p2.getNombre());
+                    Toast.makeText(getActivity(), p2.getNombre()+" cambiado por "+p1.getNombre(), Toast.LENGTH_SHORT).show();
                 } else {
                     manager.CambiarState_suplente(p1.getNombre());
+                    Toast.makeText(getActivity(),p1.getNombre()+" es titular.", Toast.LENGTH_SHORT).show();
                 }
-                
+                return true;
+            case 1:
+                p1= players.get(posicion); //Jugador suplente
+                if (Aux_Posicion<=defensas.size()-1) {
+                    p2 = defensas.get(Aux_Posicion); //Jugador titular
+                    manager.CambiarState_titular_suplente(p1.getNombre(),p2.getNombre());
+                    Toast.makeText(getActivity(), p2.getNombre()+" cambiado por "+p1.getNombre(), Toast.LENGTH_SHORT).show();
+
+                } else {
+                    manager.CambiarState_suplente(p1.getNombre());
+                    Toast.makeText(getActivity(),p1.getNombre()+" es titular.", Toast.LENGTH_SHORT).show();
+
+                }
+                //Toast.makeText(getActivity(),p1.getNombre(), Toast.LENGTH_SHORT).show();
                 return true;
             case 2:
-                p1= players.get(Aux_Posicion); //Jugador suplente
-                p2= medios.get(posicion); //Jugador titular
-                Toast.makeText(getActivity(), p2.getNombre()+" cambiado por "+p1.getNombre(), Toast.LENGTH_LONG).show();
+                p1= players.get(posicion); //Jugador suplente
+                if (Aux_Posicion<=medios.size()-1) {
+                    p2 = medios.get(Aux_Posicion); //Jugador titular
+                    manager.CambiarState_titular_suplente(p1.getNombre(),p2.getNombre());
+                    Toast.makeText(getActivity(), p2.getNombre()+" cambiado por "+p1.getNombre(), Toast.LENGTH_SHORT).show();
+
+                } else {
+                    manager.CambiarState_suplente(p1.getNombre());
+                    Toast.makeText(getActivity(),p1.getNombre()+" es titular.", Toast.LENGTH_SHORT).show();
+
+                }
+
                 return true;
             case 3:
-                p1= players.get(Aux_Posicion); //Jugador suplente
-                p2= delanteros.get(posicion); //Jugador titular
-                Toast.makeText(getActivity(), p2.getNombre()+" cambiado por "+p1.getNombre(), Toast.LENGTH_LONG).show();
+                p1= players.get(posicion); //Jugador suplente
+                if (Aux_Posicion<=delanteros.size()-1) {
+                    p2 = delanteros.get(Aux_Posicion); //Jugador titular
+                    manager.CambiarState_titular_suplente(p1.getNombre(),p2.getNombre());
+                    Toast.makeText(getActivity(), p2.getNombre()+" cambiado por "+p1.getNombre(), Toast.LENGTH_SHORT).show();
+                } else {
+                    manager.CambiarState_suplente(p1.getNombre());
+                    Toast.makeText(getActivity(),p1.getNombre()+" es titular.", Toast.LENGTH_SHORT).show();
+                }
+
                 return true;
             default:
                 return super.onContextItemSelected(item);
