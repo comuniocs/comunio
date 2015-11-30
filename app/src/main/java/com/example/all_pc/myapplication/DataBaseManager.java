@@ -277,7 +277,7 @@ public class DataBaseManager {
         //c = db.rawQuery("SELECT "+CN_VALUE+" FROM "+ TABLE_NAME_PLAYERS + " WHERE nombre = '"+nombre_jug+"'",null);
         //c.moveToFirst();
         //i=c.getInt(0);
-        i=50;
+        i=1000;
         aux = aux + i;
         ContentValues values = new ContentValues();
         values.put(CN_MONEY, aux);

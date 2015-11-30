@@ -56,7 +56,7 @@
         </activity>
 
         <activity
-            android:name=".FnJugadores"
+            android:name=".FnMerc_Fichajes"
             android:label="Jugadores" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

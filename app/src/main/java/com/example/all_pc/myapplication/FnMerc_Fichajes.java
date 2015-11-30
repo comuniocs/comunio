@@ -3,59 +3,68 @@ package com.example.all_pc.myapplication;
 import android.app.Fragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
+import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import java.util.List;
 
 /**
- * Created by xEV on 15/11/2015.
+ * Created by All-PC on 16/10/2015.
  */
-public class FnMerc_Fichajes extends Fragment implements View.OnClickListener {
-    ListView list;
-    ArrayAdapter<String> adapter;
+public class FnMerc_Fichajes extends Fragment implements AdapterView.OnItemClickListener {
+
+    private ListView listView;
+    private DataBaseManager manager;
+    private List<Player> players;
+    private TextView Tdinero;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
         View rootView = inflater.inflate(R.layout.lay_merc_fichajes, container, false);
+        manager = new DataBaseManager(getActivity());
 
-        //titulo.setText("Mis Jugadores");
+        listView = (ListView) rootView.findViewById(R.id.listView);
+        Tdinero = (TextView) rootView.findViewById(R.id.textDinero);
 
-        list = (ListView) rootView.findViewById(R.id.listjug_propiosventa);
-        adapter = new ArrayAdapter<String>(this.getActivity() ,android.R.layout.simple_list_item_1, android.R.id.text1, Act_Principal.getJug_venta());
-        list.setAdapter(adapter);
-        //list.addHeaderView(titulo);
+        final DataBaseManager manager = new DataBaseManager(getActivity());
+        players = manager.getJugadoresSinEquipo();
+        String aux= manager.getTeam_user(Login.id_user);
+        int i= manager.getMoney(aux);
+        Tdinero.setText(String.valueOf(i));
+
+        listView.setAdapter(new PlayerAdapter(getActivity(), players));
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position,
+                                    long id) {
+                String aux = players.get(position).getNombre();
+                int i = manager.comprarjugador(manager.getTeam_user(Login.id_user), aux);
+                if (i == 1) {
+                    Toast.makeText(getActivity(), aux + " comprado.", Toast.LENGTH_SHORT ).show();
+                } else {
+                    Toast.makeText(getActivity(), "No tiene suficiente dinero", Toast.LENGTH_SHORT ).show();
+                }
+            }
+        });
 
         return rootView;
     }
-
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+    public void onItemClick(AdapterView<?> l, View v, int position, long id) {
+        String aux = players.get(position).getEquipo_usuario();
+        int i = manager.comprarjugador(manager.getTeam_user(Login.id_user),aux);
+        if (i==1){
+            Toast.makeText(getActivity(), aux+" comprado.", Toast.LENGTH_LONG).show();
+        } else {
+            Toast.makeText(getActivity(), "No tiene suficiente dinero", Toast.LENGTH_LONG).show();
         }
-
-        return super.onOptionsItemSelected(item);
     }
 
 
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()){
-            /*case R.id.bLogout:
-                startActivity(new Intent(this, Login.class));
-                break;*/}
 
-
-    }
 }

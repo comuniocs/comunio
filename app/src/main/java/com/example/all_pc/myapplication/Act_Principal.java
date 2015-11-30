@@ -183,10 +183,10 @@ public class Act_Principal extends AppCompatActivity {
                 fragment = new FnListEquipos();
                 break;
             case 3:
-                fragment = new FnJugadores();
+                fragment = new FnMerc_Fichajes();
                 break;
             case 4:
-                fragment = new FnMerc_Fichajes();
+                fragment = new FnWebView();
                 break;
 
             default:
