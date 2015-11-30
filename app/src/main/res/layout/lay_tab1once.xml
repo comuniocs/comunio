@@ -19,38 +19,24 @@
         android:layout_weight="0.31"
         android:weightSum="1">
 
-        <RelativeLayout
-            android:layout_width="82dp"
-            android:layout_height="match_parent"
-            android:layout_gravity="center_vertical"></RelativeLayout>
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="56dp"
+            android:id="@+id/imDel1"
+            android:background="@android:drawable/ic_dialog_dialer"
+            android:layout_weight="0.07"
+            android:layout_marginTop="50dp"
+            android:layout_marginRight="40dp"
+            android:layout_marginLeft="115dp" />
 
-        <FrameLayout
-            android:layout_width="222dp"
-            android:layout_height="match_parent"
-            android:layout_gravity="center_vertical">
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="56dp"
+            android:id="@+id/imDel2"
+            android:background="@android:drawable/ic_dialog_dialer"
+            android:layout_weight="0.07"
+            android:layout_marginTop="70dp" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceSmall"
-                android:text="Small Text"
-                android:id="@+id/tDel1"
-                android:layout_gravity="left|center_vertical"
-                android:textSize="15dp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceSmall"
-                android:text="Small Text"
-                android:id="@+id/tDel2"
-                android:layout_gravity="right|center_vertical"
-                android:textSize="15dp" />
-        </FrameLayout>
-
-        <RelativeLayout
-            android:layout_width="82dp"
-            android:layout_height="match_parent"></RelativeLayout>
     </LinearLayout>
 
     <LinearLayout
@@ -62,74 +48,37 @@
         android:layout_weight="0.29"
         android:weightSum="1">
 
-        <LinearLayout
-            android:orientation="vertical"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent">
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="56dp"
+            android:id="@+id/imMed1"
+            android:background="@android:drawable/ic_dialog_dialer"
+            android:layout_weight="0.07"
+            android:layout_marginRight="40dp"
+            android:layout_marginLeft="28dp" />
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="52dp"></RelativeLayout>
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="56dp"
+            android:id="@+id/imMed2"
+            android:background="@android:drawable/ic_dialog_dialer"
+            android:layout_weight="0.07"
+            android:layout_marginRight="40dp" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceSmall"
-                android:text="Small Text"
-                android:id="@+id/tMed1"
-                android:textSize="15dp"
-                android:layout_weight="0.00"
-                android:layout_marginLeft="15dp" />
-        </LinearLayout>
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="56dp"
+            android:id="@+id/imMed3"
+            android:background="@android:drawable/ic_dialog_dialer"
+            android:layout_weight="0.07"
+            android:layout_marginRight="40dp" />
 
-        <FrameLayout
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_gravity="center_vertical"
-            android:layout_weight="0.91">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceSmall"
-                android:text="Small Text"
-                android:id="@+id/tMed2"
-                android:textSize="15dp"
-                android:layout_weight="0.00"
-                android:layout_gravity="left|center_vertical"
-                android:layout_marginLeft="15dp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceSmall"
-                android:text="Small Text"
-                android:id="@+id/tMed3"
-                android:textSize="15dp"
-                android:layout_weight="0.00"
-                android:layout_gravity="right|center_vertical"
-                android:layout_marginRight="15dp" />
-        </FrameLayout>
-
-        <LinearLayout
-            android:orientation="vertical"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent" >
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="52dp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceSmall"
-                android:text="Small Text"
-                android:id="@+id/tMed4"
-                android:textSize="15dp"
-                android:layout_weight="0.00"
-                android:layout_marginRight="15dp" />
-        </LinearLayout>
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="56dp"
+            android:id="@+id/imMed4"
+            android:background="@android:drawable/ic_dialog_dialer"
+            android:layout_weight="0.07" />
 
     </LinearLayout>
 
@@ -140,56 +89,40 @@
         android:layout_gravity="center_horizontal"
         android:id="@+id/Defensa"
         android:layout_weight="0.28"
-        android:weightSum="1">
+        android:weightSum="1"
+        android:paddingTop="20dp">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceSmall"
-            android:text="Small Text"
-            android:id="@+id/tDfc1"
-            android:textSize="15dp"
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="56dp"
+            android:id="@+id/imDef1"
+            android:background="@android:drawable/ic_dialog_dialer"
             android:layout_weight="0.07"
-            android:layout_marginLeft="15dp"
-            android:layout_marginTop="30dp" />
+            android:layout_marginRight="40dp"
+            android:layout_marginLeft="28dp" />
 
-        <FrameLayout
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="0.81">
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="56dp"
+            android:id="@+id/imDef2"
+            android:background="@android:drawable/ic_dialog_dialer"
+            android:layout_weight="0.07"
+            android:layout_marginRight="40dp" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceSmall"
-                android:text="Small Text"
-                android:id="@+id/tDfc2"
-                android:layout_gravity="left|center_vertical"
-                android:textSize="15dp"
-                android:layout_marginLeft="10dp" />
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="56dp"
+            android:id="@+id/imDef3"
+            android:background="@android:drawable/ic_dialog_dialer"
+            android:layout_weight="0.07"
+            android:layout_marginRight="40dp" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceSmall"
-                android:text="Small Text"
-                android:id="@+id/tDfc3"
-                android:layout_gravity="right|center_vertical"
-                android:textSize="15dp"
-                android:layout_marginRight="10dp" />
-        </FrameLayout>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceSmall"
-            android:text="Small Text"
-            android:id="@+id/tDfc4"
-            android:textSize="15dp"
-            android:layout_weight="0.11"
-            android:layout_marginRight="15dp"
-            android:layout_marginTop="30dp" />
-
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="56dp"
+            android:id="@+id/imDef4"
+            android:background="@android:drawable/ic_dialog_dialer"
+            android:layout_weight="0.07" />
     </LinearLayout>
 
     <FrameLayout
@@ -199,14 +132,13 @@
         android:id="@+id/Portero"
         android:layout_weight="0.07">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="Medium Text"
-            android:id="@+id/tPortero"
-            android:layout_gravity="center_horizontal|bottom"
-            android:textSize="15dp" />
+        <ImageView
+            android:layout_width="51dp"
+            android:layout_height="56dp"
+            android:id="@+id/imPor"
+            android:background="@android:drawable/ic_dialog_dialer"
+            android:layout_weight="0.07"
+            android:layout_gravity="center" />
     </FrameLayout>
 
 </LinearLayout>

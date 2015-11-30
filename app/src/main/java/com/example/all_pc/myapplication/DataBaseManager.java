@@ -25,6 +25,7 @@ public class DataBaseManager {
     public static final String CN_VALUE = "valor";
     public static final String CN_MONEY = "dinero";
     public static final String CN_POSITION = "posicion";
+    public static final String CN_STATE = "estado";
     public static final String CN_TEAM_USER = "equipo_usuario";
     private  DbHelper helper;
     private  SQLiteDatabase db;
@@ -46,6 +47,7 @@ public class DataBaseManager {
             + CN_TEAM_IMAGE + " text,"
             + CN_POSITION + " text,"
             + CN_VALUE + " integer," //Precio del jugador
+            + CN_STATE + " text,"
             + CN_TEAM_USER + " text);"; //Equipo al que pertenece
 
     public static final String DROP_TABLE_PLAYER = "drop table "+TABLE_NAME_PLAYERS +" IF EXIST;";
@@ -85,15 +87,6 @@ public class DataBaseManager {
        return db.insert(TABLE_NAME, null, generarContentValues(nombre, username, contraseña));//devuelve long, si es -1 es que hubo problemas.
     }
 
-    /*public void generarjugadores(){
-        db.execSQL("INSERT INTO "+TABLE_NAME_PLAYERS+" VALUES ('L. Messi','FCB');");
-        db.execSQL("INSERT INTO "+TABLE_NAME_PLAYERS+" VALUES ('Ronaldo','RMA');");
-        db.execSQL("INSERT INTO "+TABLE_NAME_PLAYERS+" VALUES ('Marcelo','RMA');");
-        db.execSQL("INSERT INTO "+TABLE_NAME_PLAYERS+" VALUES ('Benzema','RMA');");
-        db.execSQL("INSERT INTO "+TABLE_NAME_PLAYERS+" VALUES ('Neymar','FCB');");
-
-    }*/
-
     public void insertar2 (String nombre, String username, String contraseña){
         db.execSQL("INSERT INTO " + TABLE_NAME + " values(null,'" + nombre + "','" + username + "','" + contraseña + "')");
 
@@ -131,6 +124,105 @@ public class DataBaseManager {
         c.moveToFirst();
         String team_user= c.getString(0);
         return team_user;
+    }
+    public void CambiarState_titular_suplente (String jug1,String jug2){
+        ContentValues values = new ContentValues();
+        values.put(CN_STATE, "si");
+        String[]aux2=new  String[]{jug1};
+        db.update(TABLE_NAME_PLAYERS, values, CN_NAME + " =?", aux2);
+        values = new ContentValues();
+        values.put(CN_STATE, "no");
+        String[]aux3=new  String[]{jug2};
+        db.update(TABLE_NAME_PLAYERS,values, CN_NAME+" =?",aux3);
+
+
+    }
+
+    public  List<Player> getJugadoresTitulares(String user_team,String Posicion){
+        List<Player> players = new ArrayList<>();
+        String[]aux= new String[]{user_team,Posicion,"si"};
+        //Cursor c = db.rawQuery("SELECT * FROM "+ TABLE_NAME_PLAYERS + " WHERE "+CN_TEAM_USER +" =? And "+CN_POSITION+" =? And "+CN_STATE+" =?", aux);
+        Cursor c = db.rawQuery("SELECT * FROM "+ TABLE_NAME_PLAYERS + " WHERE "+CN_TEAM_USER +" =? And "+CN_POSITION+" =? And "+CN_STATE+" =?", aux);
+        if (c.moveToFirst()) {
+            do{
+                Player jugador = new Player(c.getInt(0), c.getString(1), c.getString(2), c.getString(3), c.getString(4), c.getString(5), c.getInt(6), c.getString(7));
+                players.add(jugador);
+
+            }while(c.moveToNext());
+            return players;
+        }else{
+            return players;
+
+        }
+
+    }
+
+     public List<Player>getPorteros(String user_team){
+         List<Player> players = new ArrayList<>();
+         String[]aux=new String[]{user_team,"Portero"};
+         Cursor c = db.rawQuery("SELECT * FROM "+ TABLE_NAME_PLAYERS + " WHERE "+CN_TEAM_USER +" =? And "+CN_POSITION+" =?", aux);
+         if (c.moveToFirst()) {
+             do{
+                 Player jugador = new Player(c.getInt(0), c.getString(1), c.getString(2), c.getString(3), c.getString(4), c.getString(5), c.getInt(6), c.getString(7));
+                 players.add(jugador);
+
+             }while(c.moveToNext());
+             return players;
+         }else{
+             return players;
+
+         }
+     }
+
+    public List<Player> getDefensas(String user_team){
+        List<Player> players = new ArrayList<>();
+        String[]aux=new String[]{user_team,"Defensa"};
+        Cursor c = db.rawQuery("SELECT * FROM " + TABLE_NAME_PLAYERS + " WHERE " + CN_TEAM_USER + " =? And " + CN_POSITION + " =?", aux);
+        if (c.moveToFirst()) {
+            do{
+                Player jugador = new Player(c.getInt(0), c.getString(1), c.getString(2), c.getString(3), c.getString(4), c.getString(5), c.getInt(6), c.getString(7));
+                players.add(jugador);
+
+            }while(c.moveToNext());
+            return players;
+        }else{
+            return players;
+
+        }
+    }
+
+    public List<Player> getMedios(String user_team) {
+        List<Player> players = new ArrayList<>();
+        String[] aux = new String[]{user_team, "Medio"};
+        Cursor c = db.rawQuery("SELECT * FROM " + TABLE_NAME_PLAYERS + " WHERE " + CN_TEAM_USER + " =? And " + CN_POSITION + " =?", aux);
+        if (c.moveToFirst()) {
+            do{
+                Player jugador = new Player(c.getInt(0), c.getString(1), c.getString(2), c.getString(3), c.getString(4), c.getString(5), c.getInt(6), c.getString(7));
+                players.add(jugador);
+
+            }while(c.moveToNext());
+            return players;
+        }else{
+            return players;
+
+        }
+    }
+
+    public List<Player> getDelanteros(String user_team) {
+        List<Player> players = new ArrayList<>();
+        String[] aux = new String[]{user_team, "Delantero"};
+        Cursor c = db.rawQuery("SELECT * FROM " + TABLE_NAME_PLAYERS + " WHERE " + CN_TEAM_USER + " =? And " + CN_POSITION + " =?", aux);
+        if (c.moveToFirst()) {
+            do{
+                Player jugador = new Player(c.getInt(0), c.getString(1), c.getString(2), c.getString(3), c.getString(4), c.getString(5), c.getInt(6), c.getString(7));
+                players.add(jugador);
+
+            }while(c.moveToNext());
+            return players;
+        }else{
+            return players;
+
+        }
     }
 
     public List<Player> getJugadoresSinEquipo (){

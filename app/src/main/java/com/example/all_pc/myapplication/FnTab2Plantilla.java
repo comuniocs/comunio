@@ -36,23 +36,6 @@ public class FnTab2Plantilla extends Fragment implements View.OnClickListener {
         players = manager.getJugadoresDeEquipo(aux);
         listView.setAdapter(new PlayerAdapter(getActivity(),players));
 
-
-
-
-
-        /*lista = new ArrayList<String>();
-        //titulo.setText("Mis Jugadores");
-        list = (ListView) rootView.findViewById(R.id.listPlantilla);
-        lista.add("Cristiano Ronaldo");
-        lista.add("Leo Messi");
-        lista.add("Luis Suarez");
-        lista.add("Pedro Leon");
-        lista.add("Fernando Torres");
-        lista.add("Keylor Navas");
-        adapter = new ArrayAdapter<String>(this.getActivity() ,android.R.layout.simple_list_item_1, android.R.id.text1, lista);
-        list.setAdapter(adapter);
-        //list.addHeaderView(titulo);*/
-
         registerForContextMenu(listView);
 
         return rootView;
@@ -83,6 +66,7 @@ public class FnTab2Plantilla extends Fragment implements View.OnClickListener {
 
         switch (item.getItemId()) {
             case R.id.etq1Informacion:
+                players.get(info.position);
                 Toast.makeText(getActivity(), "Informacion", Toast.LENGTH_LONG).show();
                 return true;
             case R.id.etq2Venta:
