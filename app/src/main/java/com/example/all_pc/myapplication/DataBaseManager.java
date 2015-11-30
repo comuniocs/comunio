@@ -80,6 +80,8 @@ public class DataBaseManager {
         valores.put(CN_NAME, nombre);
         valores.put(CN_USERNAME, username);
         valores.put(CN_PASSWORD, contraseña);
+        valores.put(CN_MONEY, 1000000);
+        valores.put(CN_POINTS, 0);
         return valores;
     }
     // podemos crear una clase usuario el cual tendra todos los datos incluido el id pero este se generara solo y no habra que ponerlo, por tanto se creara el objeto y se insertara ocmo tal.
