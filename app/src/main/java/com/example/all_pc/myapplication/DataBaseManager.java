@@ -114,8 +114,39 @@ public class DataBaseManager {
         }
     }
 
+    public void generarpuntos(){
+        Cursor c = db.rawQuery("SELECT "+CN_ID+" FROM "+ TABLE_NAME , null);
+        List<Integer> ids = new ArrayList<>();
+        if (c.moveToFirst()) {
+            do{
+                ids.add(c.getInt(0));
+            }while(c.moveToNext());
+        }
+        List<Integer> puntos_team = new ArrayList<>();
+        c = db.rawQuery("SELECT "+CN_POINTS+" FROM "+ TABLE_NAME , null);
+        if (c.moveToFirst()) {
+            do{
+                puntos_team.add(c.getInt(0));
+            }while(c.moveToNext());
+        }
+        for (int id:ids){
+            int numero = (int) (Math.random() *10) + 1;
+            numero = numero + puntos_team.get(id-1);
+            ContentValues values = new ContentValues();
+            values.put(CN_POINTS, numero);
+            String[]aux3=new  String[]{String.valueOf(id)};
+            db.update(TABLE_NAME,values, CN_ID+" =?",aux3);
+
+        }
+    }
     public int getID_user(String username){
         Cursor c = db.rawQuery("SELECT "+CN_ID+" FROM "+ TABLE_NAME + " WHERE username = '"+username+"'", null);
+        c.moveToFirst();
+        int i=c.getInt(0);
+        return i;
+    }
+    public int getID_player (String nombre){
+        Cursor c = db.rawQuery("SELECT "+CN_ID+" FROM "+ TABLE_NAME_PLAYERS + " WHERE "+CN_ID+" = '"+nombre+"'", null);
         c.moveToFirst();
         int i=c.getInt(0);
         return i;
@@ -270,9 +301,7 @@ public class DataBaseManager {
 
     public void venderjugador (String nom_equipo,String nombre_jug){
         int aux,i;
-        Cursor c= db.rawQuery("SELECT "+CN_MONEY+" FROM "+ TABLE_NAME + " WHERE username = '"+nom_equipo+"'",null);
-        c.moveToFirst();
-        aux=c.getInt(0);
+        aux = this.getMoney(nom_equipo);
 
         //c = db.rawQuery("SELECT "+CN_VALUE+" FROM "+ TABLE_NAME_PLAYERS + " WHERE nombre = '"+nombre_jug+"'",null);
         //c.moveToFirst();
@@ -286,15 +315,16 @@ public class DataBaseManager {
         values = new ContentValues();
         values.putNull(CN_TEAM_USER);
         String[]aux3=new  String[]{nombre_jug};
-        db.update(TABLE_NAME_PLAYERS,values, CN_NAME+" =?",aux3);
+        db.update(TABLE_NAME_PLAYERS,values, CN_NAME+" =? ",aux3);
 
     }
 
     public int comprarjugador(String nom_equipo,String nombre_jug){
         int aux;
-        Cursor c= db.rawQuery("SELECT "+CN_MONEY+" FROM "+ TABLE_NAME + " WHERE username = '"+nom_equipo+"'",null);
-        c.moveToFirst();
-        aux=c.getInt(0);
+        aux = this.getMoney(nom_equipo);
+        //Cursor c= db.rawQuery("SELECT "+CN_MONEY+" FROM "+ TABLE_NAME + " WHERE username = '"+nom_equipo+"'",null);
+        //c.moveToFirst();
+        //aux=c.getInt(0);
         //c = db.rawQuery("SELECT "+CN_VALUE+" FROM "+ TABLE_NAME_PLAYERS + " WHERE nombre = '"+nombre_jug+"'",null);
         //c.moveToFirst();
         int i= 1000;
@@ -326,6 +356,17 @@ public class DataBaseManager {
                 teams.add(team);
 
             }while(c.moveToNext());
+            int i, j;
+            Team aux;
+            for(i=0;i<teams.size()-1;i++) {
+                for (j = 0; j < teams.size() - i - 1; j++) {
+                    if (teams.get(j + 1).getPuntos() > teams.get(j).getPuntos()) {
+                        aux = teams.get(j + 1);
+                        teams.set(j + 1, teams.get(j));
+                        teams.set(j, aux);
+                    }
+                }
+            }
             return teams;
         }else{
             return teams;

@@ -19,9 +19,10 @@
     <string-array name="nav_drawer_items">
         <item>Mi Equipo</item>
         <item>Clasificacion</item>
-        <item>List de Equipos</item>
         <item>Merc. Fichajes</item>
         <item>Resultados</item>
+        <item>Simular Jornada</item>
+        <item>Salir</item>
 
 
     </string-array>
@@ -30,7 +31,6 @@
     <array name="nav_drawer_icons">
         <item>@drawable/ic_home</item>
         <item>@drawable/ic_clasif</item>
-        <item>@drawable/ic_equipo</item>
         <item>@drawable/ic_fichaj</item>
         <item>@drawable/ic_jugador</item>
         <!--<item>@drawable/"nombre"</item>-->

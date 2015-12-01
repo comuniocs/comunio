@@ -11,7 +11,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.List;
@@ -23,6 +22,7 @@ public class FnTab2Plantilla extends Fragment implements View.OnClickListener {
     private DataBaseManager manager;
     private ListView listView;
     private List<Player> players;
+    private String Nombre_jugador;
 
     private final int FRAGMENT_GROUPID = 30;
 
@@ -57,6 +57,7 @@ public class FnTab2Plantilla extends Fragment implements View.OnClickListener {
 
             menu.setHeaderTitle(
                     players.get(info.position).getNombre());
+            this.Nombre_jugador=players.get(info.position).getNombre();
 
             inflater.inflate(R.menu.menu_tab2plantilla, menu);
 
@@ -75,7 +76,8 @@ public class FnTab2Plantilla extends Fragment implements View.OnClickListener {
                 return true;
             case R.id.etq2Venta:
                 String aux= manager.getTeam_user(Login.id_user);
-                manager.venderjugador(manager.getTeam_user(Login.id_user),aux);
+                //String aux2 = item.getTitle().toString();
+                manager.venderjugador(manager.getTeam_user(Login.id_user),players.get(info.position).getNombre());
                 Toast.makeText(getActivity(), players.get(info.position).getNombre()+" ha sido vendido.", Toast.LENGTH_SHORT).show();
                 return true;
             default:

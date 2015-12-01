@@ -27,7 +27,7 @@
 
         <activity
             android:name=".register"
-            android:label="Resgistrar" >
+            android:label="Registrar" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

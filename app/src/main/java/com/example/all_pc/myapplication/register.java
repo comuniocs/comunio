@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 public class register extends AppCompatActivity implements  View.OnClickListener{
 
@@ -34,7 +35,7 @@ public class register extends AppCompatActivity implements  View.OnClickListener
                      if (result == -1) {
                         showAlert("El usuario ya existe");}
                      else{
-                         showAlert("Usuario creado correctamente");
+                         Toast.makeText(this, "Usuario registrado correctamente.", Toast.LENGTH_SHORT).show();
                          startActivity(new Intent(this, Login.class));
                      }
 

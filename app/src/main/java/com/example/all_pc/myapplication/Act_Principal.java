@@ -2,6 +2,7 @@ package com.example.all_pc.myapplication;
 
 import android.app.Fragment;
 import android.app.FragmentManager;
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.content.res.TypedArray;
 import android.os.Bundle;
@@ -14,6 +15,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -79,6 +81,7 @@ public class Act_Principal extends AppCompatActivity {
         navDrawerItems.add(new NavDrawerItem(navMenuTitles[3], navMenuIcons.getResourceId(3, -1)));
         // Mercado
         navDrawerItems.add(new NavDrawerItem(navMenuTitles[4], navMenuIcons.getResourceId(4, -1)));
+        navDrawerItems.add(new NavDrawerItem(navMenuTitles[5], navMenuIcons.getResourceId(5, -1)));
 
 
         // Recycle the typed array
@@ -180,13 +183,19 @@ public class Act_Principal extends AppCompatActivity {
                 fragment = new FnClasificacion();
                 break;
             case 2:
-                fragment = new FnListEquipos();
-                break;
-            case 3:
                 fragment = new FnMerc_Fichajes();
                 break;
-            case 4:
+            case 3:
                 fragment = new FnWebView();
+                break;
+            case 4:
+                DataBaseManager manager = new DataBaseManager(this);
+                manager.generarpuntos();
+                Toast.makeText(this, "Jornada simulada.", Toast.LENGTH_SHORT).show();
+                break;
+            case 5:
+                Intent intent = new Intent(this,Login.class);
+                startActivity(intent);
                 break;
 
             default:
