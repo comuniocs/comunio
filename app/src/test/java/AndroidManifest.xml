@@ -1,0 +1,11 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <instrumentation
+        android:name="cucumber.api.android.CucumberInstrumentation"
+        android:targetPackage="com.example.all_pc.myapplication" />
+
+    <application
+        android:label="Comunio">
+        <uses-library android:name="android.test.runner" />
+    </application>
+</manifest>
