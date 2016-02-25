@@ -47,6 +47,6 @@ task commit(type: GitCommit){
 task pushNewVersion(){
     tasks.add.execute()
     tasks.commit.execute()
-    tasks.tag.execute()
+    //tasks.tag.execute()
     tasks.pushWithTags.execute()
 }
