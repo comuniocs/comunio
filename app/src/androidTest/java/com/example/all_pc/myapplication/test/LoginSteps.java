@@ -43,7 +43,7 @@ public class LoginSteps extends ActivityInstrumentationTestCase2<Login>{
     public Boolean I_should_see_s_message(final String s) {
         Boolean estado = false;
         switch (s){
-            case "failture":
+            case "failure":
                 estado = false;
                 break;
             case "success":
