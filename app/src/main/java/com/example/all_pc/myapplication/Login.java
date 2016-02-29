@@ -18,6 +18,7 @@ public class Login extends Activity {
 
     protected String usuario;
     protected String pass;
+    public boolean status;
 
 
     @Override
@@ -39,7 +40,8 @@ public class Login extends Activity {
                     usuario = ((EditText) findViewById(R.id.tUsuario)).getText().toString();
                     pass = ((EditText) findViewById(R.id.tPass)).getText().toString();
                     // Si cumple el if pasara a la siguiente pantalla si no, saldra una notificacion advirtiendo que hay algun dato incorrecto
-                    if (usuario.equals("admin") && pass.equals("admin")) {
+                    status = (usuario.equals("admin") && pass.equals("admin"));
+                    if (status) {
                         startActivity(new Intent(Login.this, Act_Principal.class));
                     } else {
                         Toast.makeText(getApplicationContext(), "Usuario/Contraseña incorrectos", Toast.LENGTH_SHORT).show();
